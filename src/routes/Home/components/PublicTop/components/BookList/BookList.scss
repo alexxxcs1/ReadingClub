@@ -1,0 +1,79 @@
+.BookList {
+  width: 100%;
+  margin-bottom: 46px;
+  .TitleBox {
+    font-size: 34px;
+    font-weight: 500;
+    color: rgba(21, 49, 16, 1);
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -24px;
+      transform: translateY(-50%) translateX(100%);
+      width: 35px;
+      height: 30px;
+      background-image: var(--data-icon);
+      background-size: 100%;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -24px;
+        transform: translateY(-50%) translateX(-100%);
+        width: 35px;
+        height: 30px;
+        background-image: var(--data-icon);
+        background-size: 100%;
+      }
+  }
+  .TipsContent{
+    font-size:21px;
+    font-weight:300;
+    color:rgba(158,158,158,1);
+    margin: 40px 0;
+  }
+  .BookList{
+    width: 100%;
+    height: 257px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    .BookScroll{
+      width: auto;
+      height: 100%;
+      padding: 0 27px;
+      pointer-events: none;
+      .Book{
+        width: 149px;
+        height: 221px;
+        overflow: hidden;
+        margin: 0 20px;
+        pointer-events: all;
+        box-shadow: rgba($color: #00B9F1, $alpha: 0.6) 0 0 10px; 
+        img{
+          width: 100%;
+          display: block;
+        }
+      }
+    }
+  }
+  .SignUpButton{
+    width: 538px;
+    height: 80px;
+    background: #153110;
+    border-radius: 15px;
+    color: #fff;
+    font-size:34px;
+    font-weight:500;
+    color:rgba(172,220,218,1);
+    margin-bottom: 20px;
+  }
+  .TimeTips{
+    font-size:21px;
+    font-weight:300;
+    color:rgba(38,86,28,1);
+  }
+}

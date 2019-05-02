@@ -1,0 +1,42 @@
+.GuestVideo {
+  width: 100%;
+  margin-bottom: 46px;
+  .TitleBox {
+    font-size: 34px;
+    font-weight: 500;
+    color: rgba(21, 49, 16, 1);
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -24px;
+      transform: translateY(-50%) translateX(100%);
+      width: 35px;
+      height: 30px;
+      background-image: var(--data-icon);
+      background-size: 100%;
+    }
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -24px;
+        transform: translateY(-50%) translateX(-100%);
+        width: 35px;
+        height: 30px;
+        background-image: var(--data-icon);
+        background-size: 100%;
+      }
+  }
+  .TipsContent{
+    font-size:21px;
+    font-weight:300;
+    color:rgba(158,158,158,1);
+    margin: 40px 0;
+  }
+  .VideoList{
+      width: 100%;
+      height: 228px;
+  }
+}

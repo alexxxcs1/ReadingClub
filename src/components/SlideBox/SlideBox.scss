@@ -1,0 +1,17 @@
+.SlideBox{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .unpress{
+        transition: 0.5s;
+    }
+    .WarpBox{
+        overflow: hidden;
+        height: 100%;
+        position: absolute;
+        // z-index: 0;
+        .ChildBox{
+            // z-index: 2;
+        }
+    }
+}

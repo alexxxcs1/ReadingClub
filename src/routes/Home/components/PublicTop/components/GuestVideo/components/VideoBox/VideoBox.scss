@@ -1,0 +1,20 @@
+.VideoBox{
+    width: 312px;
+    height: 175px;
+    overflow: hidden;
+    background: #D8EAEA;
+    margin: 0 32px;
+    transform: scale(1);
+    transition:transform 0.5s;
+    .video{
+        width: 100%;
+        display: block;
+    }
+    .poster{
+        width: 100%;
+        display: block;
+    }
+}
+.Focus{
+    transform: scale(1.2);
+}
