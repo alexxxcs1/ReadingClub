@@ -4,6 +4,7 @@ import style from './App.scss'
 
 import Home from 'routes/Home'
 import Book from 'routes/Book'
+import Share from 'routes/Share'
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
               <Switch>
                   
                   <Route path='/book/:id' component={Book} />
+                  <Route path='/share/:id' component={Share} />
                   {/* 首页 */}
                   <Route path='/' component={Home} />
                   

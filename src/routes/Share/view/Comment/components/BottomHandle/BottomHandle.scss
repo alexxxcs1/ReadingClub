@@ -1,0 +1,18 @@
+.BottomHandle{
+    width: 100%;
+    height: calc(95px - 2px);
+    border-top:#D6D6D6 solid 2px;
+
+    .Button{
+        width: 90%;
+        height: 100%;
+        font-size:28px;
+        font-weight:300;
+        color:rgba(158,158,158,1);
+
+        img{
+            width: 30px;
+            margin-right: 12px;
+        }
+    }
+}

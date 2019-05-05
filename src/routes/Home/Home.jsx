@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch ,Link} from "react-router-dom";
+import { Route, Switch ,Link ,Redirect} from "react-router-dom";
 import style from "./Home.scss";
 import PublicTop from './components/PublicTop'
 
@@ -46,7 +46,7 @@ export class Home extends Component {
             <Route path='/notice' component={NoticeView} />
             <Route path='/rank' component={RankView} />
             <Route path='/me' component={MeView} />
-              
+            <Redirect to="/notice" />
         </Switch>
       </div>
     );

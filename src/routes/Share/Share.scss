@@ -1,0 +1,43 @@
+.ShareView{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .VideoBox{
+        width: 100%;
+        height: 423px;
+        background: #D8EAEA;
+        overflow: hidden;
+        .video{
+            width: 100%;
+        }
+    }
+    .ChildBox{
+        width: 100%;
+        min-height: calc(100% - 423px);
+
+        .NavBox{
+            width: 100%;
+            height: 90px;
+            box-shadow: #CFCFCF 0 1px 0; 
+            a{
+                height: 100%;
+            }
+            .NavButton{
+                margin: 0 80px;
+                height: 100%;
+                font-size:32px;
+                font-weight:400;
+                color:rgba(128,128,128,1);
+                transition: box-shadow 0.5s;
+            }
+            .actButton{
+                color:rgba(21,49,16,1);
+                box-shadow: #153110 0 -7px 0 inset;
+            }
+        }
+        .ChildRoute{
+            width: 100%;
+        }
+    }
+}
