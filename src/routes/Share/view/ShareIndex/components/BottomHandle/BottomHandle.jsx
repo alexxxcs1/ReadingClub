@@ -10,6 +10,7 @@ constructor(props) {
   super(props);
   this.state = {};
      this.refreshProps = this.refreshProps.bind(this);
+     this.gotoComment = this.gotoComment.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -20,13 +21,19 @@ componentDidMount() {
 refreshProps(props) {
   
 }
+gotoComment(){
+  let url = window.location.href;
+  let urlarray = url.split('/');
+  urlarray.fill('comment',urlarray.length-1);
+  window.location.href = urlarray.join('/');
+}
 render() {
   return (
     <div className={[style.BottomHandle,'childcenter'].join(' ')}>
         <div className={[style.Button,'childcenter'].join(' ')}>
             <img src={supporticon} alt=""/>点赞1290
         </div>
-        <div className={[style.Button,'childcenter'].join(' ')}>
+        <div className={[style.Button,'childcenter'].join(' ')} onClick={this.gotoComment}>
             <img src={commenticon} alt=""/>评论8
         </div>
         <div className={[style.Button,'childcenter'].join(' ')}>

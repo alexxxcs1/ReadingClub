@@ -1,0 +1,25 @@
+.ChildComment{
+    width: 100%;
+    padding: 33px 0;
+    background: #F2F2F2;
+    margin: 30px 0;
+    .CommentList{
+        width: 595px;
+        border-left: #153110 solid 6px;
+        .comment{
+            width: 507px;
+            margin: 15px auto;
+            font-size:26px;
+            font-weight:300;
+            color:rgba(21,49,16,1);
+            text-align: justify;
+            .childcommentcontent{
+                color: #666666;
+            }
+        }
+        
+    }
+}
+.unshow{
+    display: none;
+}

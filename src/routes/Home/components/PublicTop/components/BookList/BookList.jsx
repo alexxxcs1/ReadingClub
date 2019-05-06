@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import style from './BookList.scss'
 import flowericon from 'assets/flowericon.png'
 import book from 'assets/book.jpg'
+import { Route, Switch ,Link ,Redirect} from "react-router-dom";
 
 const bookdata=[
   {
@@ -76,7 +77,7 @@ render() {
           {this.createBook()}
         </div>
       </div>
-      <div className={[style.SignUpButton,'childcenter'].join(' ')}>报名成为读书笔记分享者</div>
+      <Link to={'/newshare/select'}><div className={[style.SignUpButton,'childcenter'].join(' ')}>报名成为读书笔记分享者</div></Link>
       <div className={style.TimeTips}>截止时间：2019年6月10日</div>
     </div>
    )

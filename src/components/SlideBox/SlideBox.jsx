@@ -51,6 +51,7 @@ onTouch(type,e){
             })
             break;
         case 'move':
+            
             this.setState({
                 pos_shift:[
                     (e.touches[0].clientX - touchstarPos[0])*this.state.slideratio,

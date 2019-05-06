@@ -1,0 +1,62 @@
+
+.FixedBox{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    animation: FadeIn 0.5s forwards;
+}
+
+.MessageBox{
+    padding: 50px 50px;
+    background: rgba($color: #000000, $alpha: 0.9);
+    border-radius: 10px;
+    font-size:32px;
+    font-weight:300;
+    color:rgba(255,255,255,1);
+}
+
+.ConfirmBox{
+    min-width: calc(439px - 100px);
+    padding: 45px 50px;
+    background: rgba($color: #000000, $alpha: 0.9);
+    border-radius: 10px;
+    color:rgba(255,255,255,1);
+
+    .TitleBox{
+        width: 100%;
+        font-size:32px;
+        font-weight:300;
+        color:rgba(255,255,255,1);
+    }
+    .ConfirmMessageBox{
+        width: 100%;
+        font-size:26px;
+        font-weight:300;
+        color:rgba(255,255,255,1);
+        margin: 48px 0;
+    }
+    .Line{
+        width: 100%;
+        height: 2px;
+        background: rgba(255,255,255,1);
+        margin-bottom: 46px;
+    }
+    .ConfirmButton{
+        span{
+            font-size:32px;
+            font-weight:400;
+            text-decoration:underline;
+            color:rgba(255,255,255,1);
+        }
+    }
+}
+
+@keyframes FadeIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

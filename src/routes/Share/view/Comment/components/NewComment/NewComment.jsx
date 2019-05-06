@@ -5,6 +5,7 @@ import style from './NewComment.scss'
 import flowericon from 'assets/flowericon.png'
 import mountainicon from 'assets/mountainicon.png'
 import moreflowericon from 'assets/moreflowericon.png'
+import MessageSystem from 'components/MessageSystem'
   
 export class NewComment extends Component {
 constructor(props) {
@@ -21,7 +22,6 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  console.log(props.data);
   this.setState({
       data:props.data?props.data:this.state.data,
   })
@@ -39,8 +39,13 @@ render() {
                     <span onClick={this.props.onClose}>取消</span>
                 </div>
             </div>
-            <div className={style.InfoBox}>
-
+            <div className={[style.InfoBox,'childcenter'].join(' ')}>
+                <div className={[style.HeadShotBox,'childcenter'].join(' ')}>
+                    <img src={'https://source.unsplash.com/120x120?panda'} alt=""/>
+                </div>
+                <div className={[style.UserName,'childcenter childcontentstart'].join(' ')}>
+                    姓名(昵称)
+                </div>
             </div>
             <div className={style.Line}></div>
             <div className={style.MyComment}>

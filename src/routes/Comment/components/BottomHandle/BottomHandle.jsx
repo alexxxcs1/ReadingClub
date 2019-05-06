@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import style from './BottomHandle.scss'
 
+import supporticon from 'assets/supporticon.png'
 import commenticon from 'assets/commenticon.png'
+import forwardicon from 'assets/forwardicon.png'
 
 import NewComment from '../NewComment'
   
@@ -10,7 +12,7 @@ constructor(props) {
   super(props);
   this.state = {};
      this.refreshProps = this.refreshProps.bind(this);
-     this.createNewComment = this.createNewComment.bind(this);
+     this.SendNewComment = this.SendNewComment.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -21,18 +23,20 @@ componentDidMount() {
 refreshProps(props) {
   
 }
-createNewComment(){
-  NewComment({
-    data:{
-      user:'asdasd'
-    }
-  });
+SendNewComment(){
+  NewComment();
 }
 render() {
   return (
     <div className={[style.BottomHandle,'childcenter'].join(' ')}>
-        <div className={[style.Button,'childcenter'].join(' ')} onClick={this.createNewComment}>
-            <img src={commenticon} alt=""/>写评论
+        <div className={[style.Button,'childcenter'].join(' ')}>
+            <img src={supporticon} alt=""/>点赞1290
+        </div>
+        <div className={[style.Button,'childcenter'].join(' ')} onClick={this.SendNewComment}>
+            <img src={commenticon} alt=""/>评论8
+        </div>
+        <div className={[style.Button,'childcenter'].join(' ')}>
+            <img src={forwardicon} alt=""/>转发80
         </div>
     </div>
    )

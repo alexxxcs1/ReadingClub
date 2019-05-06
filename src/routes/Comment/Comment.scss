@@ -1,0 +1,45 @@
+.CommentView{
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .CommentContent{
+        width: calc(100% - 92px);
+        padding: 0 46px;
+
+        .UserInfo{
+            width: 100%;
+            height: 150px;
+            margin: 15px 0;
+            .HeadShot{
+                width: 128px;
+                height: 100%;
+
+                .HeadShotImage{
+                    width: 110px;
+                    height: 110px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        display: block;
+                    }
+                }
+            }
+            .UserName{
+                width: calc(100% - 128px);
+                height: 100%;
+                font-size:32px;
+                font-weight:400;
+                color:rgba(0,0,0,1);
+            }
+        }
+        .ContentBox{
+            width: 100%;
+        }
+        .BottomHandle{
+            width: 100%;
+        }
+    }
+}

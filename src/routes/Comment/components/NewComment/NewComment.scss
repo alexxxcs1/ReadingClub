@@ -1,0 +1,47 @@
+
+.FixedBox{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba($color: #000000, $alpha: 0.2);
+
+    .CommentBox{
+        width: 100%;
+        height: 100px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        background: #F2F2F2;
+
+        .ContentBox{
+            width: 700px;
+            height: 70px;
+            border-radius: 35px;
+            background: #fff;
+
+            .InputBox{
+                width: calc(100% - 120px - 40px);
+                height: calc(100% - 40px);
+                padding: 20px;
+                input{
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    background: transparent;
+                    outline: none;
+                }
+            }
+            .SendButton{
+                width: 120px;
+                height: 100%;
+                background: #153110;
+                border-radius: 35px;
+                font-size:34px;
+                font-weight:400;
+                color:rgba(172,220,218,1);
+            }
+        }
+    }
+}

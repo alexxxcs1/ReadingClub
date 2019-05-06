@@ -8,7 +8,7 @@ import TextBox from './components/TextBox'
 import doublepointicon from 'assets/doublepointicon.png'
 import flowericon from 'assets/flowericon.png'
 
-const data = '《肿瘤治疗血管通道安全指南》旨在通过规范化《肿瘤治疗血管通道安全指南》静脉治疗过程及操作步骤，使得患者、护理人员、治疗过程《肿瘤治疗血管通道安全指南》及水平达到多方面的收获。例如：减少反复穿刺，能够基本杜绝静脉炎的发生，《肿瘤治疗血管通道安全指南》在改善患者生活《肿瘤治疗血管通道安全指南》质量的同时还能《肿瘤治疗血管通道安全指南》降低治疗理行为，《肿瘤治疗血管通道安全指南》可以统一不同医院、不同护理人员的操作习惯，提高护率；再者通过医师和护士合作，共同选择适合患提高静治疗综合水平'
+const data = '《肿瘤治疗血管通道安全指南》旨在通过规范化静脉治疗过程及操作步骤，使得患者、护理人员、治疗过程及水平达到多方面的收获。例如：减少反复穿刺，生，在改善患者生活质量的同时还能降低治疗总费用；其次，通过规范护理行为，可以统一不同医院、不同再者通过医师和护士合作，共同选择适合患者的输液方式，及操作步骤，使得患者、护理人员、治疗过程及水平达到多方面的收获。例如：减少反复穿刺，生，在改善患者生活质量的同时还能降低治疗总费用；其次，通过规范护理行为，可以统一不同医院、不同再者通及操作步骤，使得患者、护理人员、治疗过程及水平达到多方面的收获。例如：减少反复穿刺，生，在改善患者生活质量的同时还能降低治疗总费用；其次，通过规范护理行为，可以统一不同医院、不同再者通过医师和护士合作，共同选择适选适合合'
   
 export class ShareIndex extends Component {
 constructor(props) {
@@ -27,7 +27,7 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  console.log(props);
+//   console.log(props);
   
 }
 createContent(){

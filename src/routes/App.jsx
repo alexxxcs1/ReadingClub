@@ -5,6 +5,8 @@ import style from './App.scss'
 import Home from 'routes/Home'
 import Book from 'routes/Book'
 import Share from 'routes/Share'
+import Comment from 'routes/Comment'
+import SelectShare from 'routes/SelectShare'
 
 class App extends Component {
   render() {
@@ -13,8 +15,10 @@ class App extends Component {
         <HashRouter >
               <Switch>
                   
-                  <Route path='/book/:id' component={Book} />
-                  <Route path='/share/:id' component={Share} />
+                  <Route path='/book/:id' component={Book} /> {/* id:书本id */}
+                  <Route path='/share/:id' component={Share} /> {/* id:读书笔记id */}
+                  <Route path='/comment/:id' component={Comment} /> {/* id:一级评论id */}
+                  <Route path='/newshare' component={SelectShare} /> {/* id:一级评论id */}
                   {/* 首页 */}
                   <Route path='/' component={Home} />
                   

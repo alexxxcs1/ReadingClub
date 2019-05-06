@@ -42,7 +42,6 @@ export class Home extends Component {
           <Link to='me'><div className={[style.NavButton,this.state.hash == 'me'?style.act:'','childcenter'].join(' ')}>我的</div></Link>
         </div>
         <Switch>
-                  
             <Route path='/notice' component={NoticeView} />
             <Route path='/rank' component={RankView} />
             <Route path='/me' component={MeView} />

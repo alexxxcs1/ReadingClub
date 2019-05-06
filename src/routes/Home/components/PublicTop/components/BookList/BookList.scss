@@ -40,7 +40,6 @@
     height: 257px;
     overflow-x: auto;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
     .BookScroll{
       width: auto;
       height: 100%;
@@ -49,7 +48,7 @@
       .Book{
         width: 149px;
         height: 221px;
-        overflow: hidden;
+        // overflow: hidden;
         margin: 0 20px;
         pointer-events: all;
         box-shadow: rgba($color: #00B9F1, $alpha: 0.6) 0 0 10px; 

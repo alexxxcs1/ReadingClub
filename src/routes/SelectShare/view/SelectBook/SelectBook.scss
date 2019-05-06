@@ -1,0 +1,84 @@
+
+.SelectBook{
+    width: 100%;
+    .ContentBox{
+        width: calc(100% - 120px);
+        padding: 0 60px;
+
+        .Title{
+            width: 100%;
+
+            .TitleFlower{
+                width: 44px;
+                display: block;
+                margin-right: 17px;
+            }
+            .TitleValue{
+                font-size:34px;
+                font-weight:500;
+                color:rgba(21,49,16,1);
+                position: relative;
+                margin: 38px 0 60px 0;
+                &::after{
+                    content: '';
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    width: 120px;
+                    height: 7px;
+                    background: linear-gradient(90deg,#ADDCDA,#D8EAEA);
+                    transform: translateY(100%);
+                }
+            }
+        }
+        .BookList{
+            width: 100%;
+            .BookItem{
+                width: 100%;
+                height:242px;
+                background: #D8EAEA;
+                margin: 14px 0;
+                box-shadow: rgba($color: #000000, $alpha: 0.4) 0 0 0px;
+                transition: background 0.5s,box-shadow 0.5s;
+                .CoverBox{
+                    width: 200px;
+                    height: 100%;
+
+                    .Cover{
+                        width: 120px;
+                    }
+                }
+                .BookInfo{
+                    width: calc(100% - 200px);
+                    height: 100%;
+                    .BookName{
+                        font-size:34px;
+                        font-weight:500;
+                        color:rgba(51,51,51,1);
+                        margin-bottom: 12px;
+                    }
+                    .BookAuthor{
+                        margin-top: 12px;
+                        font-size:26px;
+                        font-weight:300;
+                        color:rgba(0,0,0,1);
+                    }
+                }
+            }
+            .Focus{
+                background: #ACDCDA;
+                box-shadow: rgba($color: #000000, $alpha: 0.2) 0 0 25px;
+            }
+        }
+        .NextButton{
+            width:254px;
+            height:80px;
+            background: #153110;
+            border-radius: 40px;
+            margin: 43px auto;
+            font-size:34px;
+            font-weight:500;
+            color:rgba(172,220,218,1);
+        }
+    }
+}
