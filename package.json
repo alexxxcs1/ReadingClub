@@ -105,10 +105,5 @@
       "secure": false,
       "changeOrigin": true
     },
-    "/index.php/": {
-      "target": "http://wechat.crnonline.cn/",
-      "secure": false,
-      "changeOrigin": true
-    }
   }
 }

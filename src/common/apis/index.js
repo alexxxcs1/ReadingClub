@@ -3,7 +3,7 @@ import axios from 'axios'
 import AskPost from './AskPost'
 
 const cm = '/zhzx_weixin_server/index.php/api/';
-const ol = '/index.php/api/';
+const ol = 'http://wechat.crnonline.cn/index.php/api/';
 let host;
 
 if(process.env.NODE_ENV === "production") {
