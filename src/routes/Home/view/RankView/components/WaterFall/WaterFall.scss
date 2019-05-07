@@ -1,0 +1,55 @@
+.WaterFall{
+    width: 100%;
+    margin-top: 7px;
+    .FallRoad{
+        width: 50%;
+
+        .VideoCard{
+            width: 363px;
+            border-radius:12px;
+            background: #fff;
+            margin: 7px 0;
+            .PosterBox{
+                width: calc(100%);
+                img{
+                    display: block;
+                    width: 100%;
+                    border-radius:12px 12px 0 0;
+                }
+            }
+            .InfoBox{
+                width: 100%;
+                .TitleBox{
+                    width: calc(100% - 56px);
+                    padding: 0 28px;
+                    margin: 15px 0;
+                    font-size:24px;
+                    font-weight:500;
+                    color:rgba(51,51,51,1);
+                }
+                .UserBox{
+                    width: calc(100% - 56px);
+                    padding: 0 28px;
+                    margin: 20px 0;
+                    font-size:20px;
+                    font-weight:400;
+                    color:rgba(51,51,51,1);
+                    .UserName{
+                        width: 50%;
+                        img{
+                            width: 34px;
+                            margin-right: 12px;
+                        }
+                    }
+                    .VideoComment{
+                        width: 50%;
+                        img{
+                            width: 34px;
+                            margin-right: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

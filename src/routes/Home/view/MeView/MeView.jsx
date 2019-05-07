@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import style from './MeView.scss'
 import readbook from 'assets/readbook.gif'
-  
+import BookList from './components/BookList'  
+
 export class MeView extends Component {
 constructor(props) {
   super(props);
   this.state = {};
      this.refreshProps = this.refreshProps.bind(this);
+     this.onBookChange = this.onBookChange.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -17,9 +19,13 @@ componentDidMount() {
 refreshProps(props) {
   
 }
+onBookChange(){
+
+}
 render() {
   return (
     <div className={style.ViewBox}>
+      <BookList onChnage={this.onBookChange}/>
       <div className={[style.NotFound,'childcenter childcolumn'].join(' ')}>
         <p>等你带我们开启一本好书</p>
         <p>点击上方“报名成为读书笔记分享者”即刻参赛</p>

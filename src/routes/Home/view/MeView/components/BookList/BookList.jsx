@@ -6,31 +6,31 @@ import { Route, Switch ,Link ,Redirect} from "react-router-dom";
 
 const bookdata=[
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:0,
   },
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:1,
   },
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:2,
   },
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:3,
   },
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:4,
   },
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:5,
   },
   {
-    url:'https://source.unsplash.com/268x410?panda',
+    url:book,
     id:6,
   },
 ];
@@ -39,7 +39,7 @@ export class BookList extends Component {
 constructor(props) {
   super(props);
   this.state = {
-    data:[],
+    select:0,
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.createBook = this.createBook.bind(this);
@@ -48,20 +48,27 @@ componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
 }
 componentDidMount() {
+  this.props.onChnage(this.state.select);
   this.refreshProps(this.props);
 }
 refreshProps(props) {
+  
+}
+HandleSelect(id){
+  this.props.onChnage(id);
   this.setState({
-    data:props.data,
+    select:id
   })
 }
 createBook(){
   let result = [];
-  for (let z = 0; z < this.state.data.length; z++) {
-    const book = this.state.data[z];
+  for (let z = 0; z < bookdata.length; z++) {
+    const book = bookdata[z];
     result.push(
-        <div className={style.Book} onClick={()=>{window.location.hash = '#/book/'+book.id}}>
-            <img src={book.img}/>
+        <div className={[style.BookOut,book.id==this.state.select?style.FocusBottom:'','childcenter'].join(' ')}>
+          <div className={[style.Book,book.id==this.state.select?style.Selected:''].join(' ')} onClick={this.HandleSelect.bind(this,book.id)}>
+              <img src={book.url}/>
+          </div>
         </div>
     )
   }
@@ -70,19 +77,11 @@ createBook(){
 render() {
   return (
     <div className={[style.BookList,'childcenter childcolumn'].join(' ')}>
-      <div className={style.TitleBox} style={{'--data-icon':'url('+flowericon+')'}}>
-        参与的书籍
-      </div>
-      <div className={style.TipsContent}>
-        精选6本书籍为蓝本
-      </div>
-      <div className={[style.BookList,'childcenter childcontentstart'].join(' ')}>
+      <div className={[style.List,'childcenter childcontentstart'].join(' ')}>
         <div className={[style.BookScroll,'childcenter childcontentstart'].join(' ')}>
           {this.createBook()}
         </div>
       </div>
-      <Link to={'/newshare/select'}><div className={[style.SignUpButton,'childcenter'].join(' ')}>报名成为读书笔记分享者</div></Link>
-      <div className={style.TimeTips}>截止时间：2019年6月10日</div>
     </div>
    )
    }

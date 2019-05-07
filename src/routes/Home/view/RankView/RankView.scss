@@ -1,6 +1,21 @@
 @import "../public.scss";
 
-.RankView{
+.WaterFallBox{
     width: 100%;
-    height: 600px;
+    min-height: 300px;
+    background: #D8EAEA;
+    .LoadButton{
+        margin: 30px;
+        margin-bottom: 80px;
+        padding: 0 30px;
+        border-radius: 12px;
+        background: #f2f2f2;
+        // width: 100%;
+        height: 60px;
+        font-size:24px;
+        font-family:SourceHanSansCN-Medium;
+        font-weight:500;
+        color:rgba(51,51,51,1);
+        line-height:32px;
+    }
 }

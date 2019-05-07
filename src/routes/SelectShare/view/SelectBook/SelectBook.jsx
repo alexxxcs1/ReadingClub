@@ -3,6 +3,8 @@ import style from './SelectBook.scss'
 import flowericon from 'assets/flowericon.png'
 import book from 'assets/book.jpg'
 import MessageSystem from 'components/MessageSystem'
+
+import {api} from 'common/app'
   
 export class SelectBook extends Component {
 constructor(props) {
@@ -10,58 +12,23 @@ constructor(props) {
   this.state = {
       selected:null,
       bookdata:[
-          {
-              id:1,
-              name:'肿瘤姑息护理实践指导',
-              author:'李二狗'
-          },
-          {
-              id:2,
-              name:'肿瘤姑息护理实践指导',
-              author:'李三狗'
-          },
-          {
-              id:3,
-              name:'肿瘤姑息护理实践指导',
-              author:'李四狗'
-          },
-          {
-              id:4,
-              name:'李氏家族族谱',
-              author:'李五狗'
-          },
-          {
-              id:5,
-              name:'李氏家族族谱',
-              author:'李五狗'
-          },
-          {
-              id:6,
-              name:'李氏家族族谱',
-              author:'李五狗'
-          },
-          {
-              id:7,
-              name:'李氏家族族谱',
-              author:'李五狗'
-          },
-          {
-              id:8,
-              name:'其他',
-            //   author:'李五狗'
-          },
+          
       ]
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.selectBook = this.selectBook.bind(this);
      this.createBook = this.createBook.bind(this);
      this.Nextstep = this.Nextstep.bind(this);
+     this.getBookList = this.getBookList.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
+  
 }
 componentDidMount() {
   this.refreshProps(this.props);
+  
+  this.getBookList();
 }
 refreshProps(props) {
   
@@ -71,6 +38,19 @@ selectBook(id){
         selected:id,
     })
 }
+getBookList(){
+    api.getBookList().then(res=>{
+        console.log(res);
+        if (res.code === 200) {
+            this.setState({
+                bookdata:res.data
+            })
+        }
+    },err=>{
+        console.log(err);
+        
+    })
+}
 createBook(){
     let result = [];
     for (let z = 0; z < this.state.bookdata.length; z++) {
@@ -78,7 +58,7 @@ createBook(){
         result.push(
             <div className={[style.BookItem,this.state.selected == bookdata.id?style.Focus:'','childcenter'].join(' ')} onClick={this.selectBook.bind(this,bookdata.id)}>
                 <div className={[style.CoverBox,'childcenter'].join(' ')}>
-                    <img src={book} className={style.Cover} alt=""/>
+                    <img src={bookdata.img} className={style.Cover} alt=""/>
                 </div>
                 <div className={[style.BookInfo,'childcenter childcolumn childalignstart'].join(' ')}>
                     <div className={style.BookName}>{bookdata.name}</div>

@@ -20,8 +20,8 @@ componentDidMount() {
 }
 refreshProps(props) {
   this.state.isFocus = props.onFocus;
-  this.state.url = props.data.url;
-  this.state.cover = props.data.kv;
+  this.state.url = props.data.video;
+  this.state.cover = props.data.img;
   this.state.id = props.data.id;
   this.setState(this.state);
 }

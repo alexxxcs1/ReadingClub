@@ -1,0 +1,98 @@
+.ContentBox{
+    width: calc(100% - 120px);
+    padding: 0 60px;
+
+    .Title{
+        width: 100%;
+
+        .TitleFlower{
+            width: 44px;
+            display: block;
+            margin-right: 17px;
+        }
+        .TitleValue{
+            font-size:34px;
+            font-weight:500;
+            color:rgba(21,49,16,1);
+            position: relative;
+            margin: 38px 0 60px 0;
+            &::after{
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                width: 120px;
+                height: 7px;
+                background: linear-gradient(90deg,#ADDCDA,#D8EAEA);
+                transform: translateY(100%);
+            }
+        }
+    }
+
+    .VideoBox{
+        width:627px;
+        height:353px;
+        background: #f2f2f2;
+
+        .AddIcon{
+            width: 74px;
+            height: 74px;
+            position: relative;
+            &::after{
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 7px;
+                background: #cccccc;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            &::before{
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 7px;
+                background: #cccccc;
+                top: 50%;
+                left: 50%;
+                transform: translateX(-50%) translateY(-50%) rotate(90deg);
+            }
+        }
+    }
+    .Tips{
+        font-size:20px;
+        font-weight:400;
+        color:rgba(51,51,51,1);
+        margin: 31px 0;
+    }
+    .SVGbox{
+        margin: 0 auto;
+        .ProgressSvg{
+            position: relative;
+            background: transparent;
+            
+        }
+    }
+    .ButtonGroup{
+        width: 100%;
+        
+        .NextButton{
+            width:254px;
+            height:80px;
+            background: #153110;
+            border-radius: 40px;
+            margin: 43px auto;
+            font-size:34px;
+            font-weight:500;
+            color:rgba(172,220,218,1);
+        }
+        .ForwardButton{
+            background: transparent;
+            color: #153110;
+            box-shadow: #153110 0 0 0 2px inset;
+            overflow: unset;
+        }
+    }
+    
+}

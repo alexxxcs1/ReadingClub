@@ -2,7 +2,15 @@ import axios from 'axios'
 
 import AskPost from './AskPost'
 
-const host = 'http://client.rup-china.com/CT_20180630/index.php/index/index/'
+const cm = '/zhzx_weixin_server/index.php/api/';
+const ol = 'wechat.crnonline.cn/index.php/api'
+let host;
+
+if(process.env.NODE_ENV === "production") {
+  host = ol;
+}else {
+  host = cm;
+}
 
 // 实例化 ajax请求对象
 const ajaxinstance = axios.create({
@@ -12,7 +20,8 @@ const ajaxinstance = axios.create({
   headers: {
     // responseType: 'JSON',
     // 'Content-Type': 'application/json'
-  }
+  },
+  withCredentials:true,
 })
 
 // 添加拦截器，处理 公用请求参数，和通用请求头部
@@ -34,6 +43,9 @@ ajaxinstance
   .response
   .use((response) => {
     // TODO
+    if (response.data.code === 3001) {
+      //todo 授权
+    }
     return response.data
   }, (error) => {
     return Promise.reject(error)

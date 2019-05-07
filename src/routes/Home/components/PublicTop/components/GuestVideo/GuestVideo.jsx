@@ -46,7 +46,9 @@ const MockVideo = [
 export class GuestVideo extends Component {
 constructor(props) {
   super(props);
-  this.state = {};
+  this.state = {
+    data:[],
+  };
      this.refreshProps = this.refreshProps.bind(this);
      this.createVideo = this.createVideo.bind(this);
 }
@@ -57,12 +59,14 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  
+  this.setState({
+    data:props.data,
+  })
 }
 createVideo(){
   let result = [];
-  for (let z = 0; z < MockVideo.length; z++) {
-    const video = MockVideo[z];
+  for (let z = 0; z < this.state.data.length; z++) {
+    const video = this.state.data[z];
     result.push(<VideoBox key={'video'+z} data={video}/>)
   }
   return result;
