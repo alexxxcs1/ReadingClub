@@ -104,6 +104,11 @@
       "target": "http://192.168.1.153/",
       "secure": false,
       "changeOrigin": true
+    },
+    "/index.php/": {
+      "target": "http://wechat.crnonline.cn/",
+      "secure": false,
+      "changeOrigin": true
     }
   }
 }
