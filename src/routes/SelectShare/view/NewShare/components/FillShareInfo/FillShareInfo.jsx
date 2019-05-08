@@ -4,13 +4,16 @@ import flowericon from 'assets/flowericon.png'
 import book from 'assets/book.jpg'
 import {Link} from 'react-router-dom';
 import MessageSystem from 'components/MessageSystem'
+import LongImageView from 'components/LongImageView'
+import {api} from 'common/app'
   
 export class FillShareInfo extends Component {
 constructor(props) {
   super(props);
   this.state = {
+      uploadProgress:0,
       shareType:1,
-      bookdata:null,
+      bookdata:{},
   };
   this.refreshProps = this.refreshProps.bind(this);
   this.HandleShareType = this.HandleShareType.bind(this);
@@ -19,6 +22,8 @@ constructor(props) {
   this.Beforestep = this.Beforestep.bind(this);
   this.onInputChange = this.onInputChange.bind(this);
   this.Verify = this.Verify.bind(this);
+  this.onInputBlur = this.onInputBlur.bind(this);
+  this.onUploadImage = this.onUploadImage.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -29,6 +34,7 @@ componentDidMount() {
 refreshProps(props) {
   this.setState({
     bookdata:props.data,
+    shareType:props.data.type?props.data.type:this.state.shareType,
   })
 }
 HandleShareType(type){
@@ -59,8 +65,38 @@ onInputChange(type,e){
         bookdata:this.state.bookdata,
     })
 }
+onUploadImage(e){
+    let file = e.target.files[0];
+  let formdata = new FormData();
+  formdata.append('file',file);
+  formdata.append('type','img');
+  e.target.value = '';
+  api.uploadFile(formdata,(progressEvent)=>{
+    var complete = (progressEvent.loaded / progressEvent.total);
+      this.state.uploadProgress = Math.min(complete,0.9);
+      this.setState(this.state);
+  }).then(res=>{
+    if (res.code == 200) {
+      this.state.bookdata.image_content = res.data.url;
+      this.setState({
+        uploadProgress:1,
+        bookdata:this.state.bookdata,
+      })
+    }else{
+      this.setState({
+        uploadProgress:0,
+      })
+      MessageSystem.message({
+        message:res.msg
+      })
+    }
+  },err=>{
+    console.log(err);
+  })
+}
 Verify(){
-    if (this.state.bookdata.title&&this.state.bookdata.pageNum&&(this.state.bookdata.text_content||this.state.bookdata.image_content)) {
+    let uploadcontent = this.state.shareType==1?this.state.bookdata.text_content:this.state.bookdata.image_content;
+    if (this.state.bookdata.title&&this.state.bookdata.pageNum&&uploadcontent) {
         return true;
     }else{
         MessageSystem.message({
@@ -69,6 +105,11 @@ Verify(){
         return false;
     }
 }
+onInputBlur() {
+    document.documentElement.scrollTop = 0;
+    window.pageYOffset = 0;
+    document.body.scrollTop = 0;
+ }
 render() {
   return (
     <div className={style.ContentBox}>
@@ -88,10 +129,10 @@ render() {
             </div>
         </div>:''}
         <div className={style.InputBox}>
-            <input type="text" onChange={this.onInputChange.bind(this,'title')} placeholder='请输入读书笔记标题，不少于5个字噢'/>
+            <input type="text" value={this.state.bookdata.title} onChange={this.onInputChange.bind(this,'title')} onBlur={this.onInputBlur} placeholder='请输入读书笔记标题，不少于5个字噢'/>
         </div>
         <div className={style.PageNumer}>
-            <span>页码:第</span><input placeholder='请输入' onChange={this.onInputChange.bind(this,'pageNum')} className={style.PageInput} type="tel" type='number'/><span>页</span>
+            <span>页码:第</span><input value={this.state.bookdata.pageNum} placeholder='请输入' onBlur={this.onInputBlur} onChange={this.onInputChange.bind(this,'pageNum')} className={style.PageInput} type="tel" type='number'/><span>页</span>
         </div>
         <div className={[style.Title,'childcenter childcontentstart'].join(' ')}>
             <img src={flowericon} className={style.TitleFlower} alt=""/>
@@ -108,13 +149,20 @@ render() {
                     case 1:
                         return (
                         <div className={style.TextAreaBox}>
-                            <textarea value={this.state.textValue} placeholder='请在这里输入原文内容' onChange={this.onInputChange.bind(this,'text_content')}></textarea>
+                            <textarea onBlur={this.onInputBlur} value={this.state.bookdata.text_content} placeholder='请在这里输入原文内容' onChange={this.onInputChange.bind(this,'text_content')}></textarea>
                         </div>
                         )
                     case 2:
                         return (
                             <div className={style.ImageBox}>
-
+                                {this.state.bookdata.image_content?(
+                                    <div className={style.ImageViewBox}>
+                                        <img src={this.state.bookdata.image_content} alt=""/>
+                                        <div className={style.ClickTips} onClick={LongImageView.bind(this,this.state.bookdata.image_content)}>点击查看原图</div>
+                                        <div className={style.ReLoadButton} onClick={()=>{this.refs.imgfile.click()}}>重新上传</div>
+                                    </div>
+                                ):<div className={style.AddIcon} onClick={()=>{this.refs.imgfile.click()}}></div>}
+                                <input type="file" ref={'imgfile'} onChange={this.onUploadImage} style={{display:'none'}}/>
                             </div>
                         )
                 }

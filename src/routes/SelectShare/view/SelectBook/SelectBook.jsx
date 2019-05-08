@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import style from './SelectBook.scss'
 import flowericon from 'assets/flowericon.png'
 import book from 'assets/book.jpg'
+import readbook from 'assets/readbook.gif'
 import MessageSystem from 'components/MessageSystem'
 
 import {api} from 'common/app'
@@ -81,7 +82,7 @@ Nextstep(){
 render() {
   return (
     <div className={style.SelectBook}>
-        <div className={style.ContentBox}>
+        {this.state.bookdata.length>0?<div className={style.ContentBox}>
             <div className={[style.Title,'childcenter childcontentstart'].join(' ')}>
                 <img src={flowericon} className={style.TitleFlower} alt=""/>
                 <div className={style.TitleValue}>请选择您阅读的书籍</div>
@@ -90,7 +91,9 @@ render() {
                 {this.createBook()}
             </div>
             <div className={[style.NextButton,'childcenter'].join(' ')} onClick={this.Nextstep}>下一步</div>
-        </div>
+        </div>:<div className={[style.LoadingBox,'childcenter'].join(' ')}>
+            <img src={readbook} alt=""/>
+        </div>}
     </div>
    )
    }

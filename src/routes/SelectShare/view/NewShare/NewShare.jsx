@@ -5,6 +5,8 @@ import {api} from 'common/app'
 import FillShareInfo from './components/FillShareInfo'
 import UploadVideo from './components/UploadVideo'
 import OtherBookFill from './components/OtherBookFill'
+
+import readbook from 'assets/readbook.gif'
   
 export class NewShare extends Component {
 constructor(props) {
@@ -29,7 +31,6 @@ componentDidMount() {
 }
 refreshProps(props) {
   let bookid  = props.match.params.id;
-  
   this.getBookDetail(bookid);
 }
 onStepChange(type,data){
@@ -44,9 +45,9 @@ getBookDetail(id){
       if (res.code === 200) {
         let _formdata = {
           bookid:res.data.id,
-          bookname:res.data.name,
-          bookauthor:res.data.author,
-          bookcontent:res.data.content,
+          bookname:res.data.name=='其他'?'':res.data.name,
+          bookauthor:res.data.author=='其他'?'':res.data.author,
+          bookcontent:res.data.content=='其他'?'':res.data.content,
           bookimage:res.data.img,
         }
         this.setState({
@@ -54,7 +55,6 @@ getBookDetail(id){
           formdata:_formdata,
         })
       }
-      
   },err=>{
     console.log(err);
     
@@ -80,7 +80,10 @@ createArray(){
 render() {
   return (
     <div className={style.NewShare}>
-        {this.createArray()}
+        {this.state.bookdata?this.createArray():
+        <div className={[style.LoadingBox,'childcenter'].join(' ')}>
+          <img src={readbook} alt=""/>
+        </div> }
     </div>
    )
    }

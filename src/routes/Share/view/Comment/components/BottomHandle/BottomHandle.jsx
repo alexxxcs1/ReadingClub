@@ -4,11 +4,14 @@ import style from './BottomHandle.scss'
 import commenticon from 'assets/commenticon.png'
 
 import NewComment from '../NewComment'
+import  MessageSystem  from 'components/MessageSystem';
   
 export class BottomHandle extends Component {
 constructor(props) {
   super(props);
-  this.state = {};
+  this.state = {
+    userinfo:{},
+  };
      this.refreshProps = this.refreshProps.bind(this);
      this.createNewComment = this.createNewComment.bind(this);
 }
@@ -19,13 +22,20 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  
+  this.state.userinfo = props.data;
+  this.setState(this.state);
 }
 createNewComment(){
+  if (JSON.stringify(this.state.userinfo) === '{}') {
+    MessageSystem.message({
+      message:'加载中，请稍后',
+    });
+    return 
+  }
   NewComment({
-    data:{
-      user:'asdasd'
-    }
+    data:this.state.userinfo,
+  },(reply)=>{
+    this.props.onUpdate(reply);
   });
 }
 render() {

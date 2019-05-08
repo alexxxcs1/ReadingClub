@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === "production") {
 // 实例化 ajax请求对象
 const ajaxinstance = axios.create({
   baseURL: host,
-  timeout: 5000,
+  timeout: 500000,
   // withCredentials: true,
   headers: {
     // responseType: 'JSON',
@@ -45,6 +45,13 @@ ajaxinstance
     // TODO
     if (response.data.code === 3001) {
       //todo 授权
+      API.getWechatAuth(window.location.href).then(res=>{
+        if (res.code === 200) {
+          window.location.href = res.data.url
+        }
+      },err=>{
+        console.log(err);
+      });
     }
     return response.data
   }, (error) => {

@@ -2,7 +2,7 @@
     width: 100%;
     height: calc(95px - 2px);
     border-top:#D6D6D6 solid 2px;
-
+    flex-shrink: 0;
     .Button{
         width: 90%;
         height: 100%;

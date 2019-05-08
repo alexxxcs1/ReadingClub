@@ -50,9 +50,9 @@ render() {
         <div className={[style.CommentList,'childcenter childcolumn'].join(' ')}>
             {this.createChildComment(this.state.child)}
         </div>
-        {this.state.showall?'':<div className={style.AllCommentButton}>
+        {this.state.showall?'':(this.state.child.length>3?<div className={style.AllCommentButton}>
           <span onClick={this.HandleShowall}>查看所有评论></span>
-        </div>}
+        </div>:'')}
     </div>
    )
    }

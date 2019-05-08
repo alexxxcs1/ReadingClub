@@ -18,7 +18,7 @@ class App extends Component {
                   <Route path='/book/:id' component={Book} /> {/* id:书本id */}
                   <Route path='/share/:id' component={Share} /> {/* id:读书笔记id */}
                   <Route path='/comment/:id' component={Comment} /> {/* id:一级评论id */}
-                  <Route path='/newshare' component={SelectShare} /> {/* id:一级评论id */}
+                  <Route path='/newshare' component={SelectShare} /> {/* */}
                   {/* 首页 */}
                   <Route path='/' component={Home} />
                   

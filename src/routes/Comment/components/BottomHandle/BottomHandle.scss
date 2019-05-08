@@ -1,6 +1,6 @@
 .BottomHandle{
     width: 100%;
-    height: calc(95px - 2px);
+    height: calc(95px);
     .Button{
         width: 33%;
         height: 100%;
@@ -11,6 +11,12 @@
         img{
             width: 30px;
             margin-right: 12px;
+        }
+        .Like{
+            filter: none;
+        }
+        .Unlike{
+            filter: grayscale(100%);
         }
     }
 }

@@ -16,6 +16,7 @@ constructor(props) {
       data:null
   };
      this.refreshProps = this.refreshProps.bind(this);
+     this.JumpUrl = this.JumpUrl.bind(this);
      
 }
 componentWillReceiveProps(nextprops) {
@@ -29,12 +30,16 @@ refreshProps(props) {
       data:props.data,
   })
 }
-
+JumpUrl(e){
+    if(e.target.getAttribute('data-safebody')=='true') return;
+    
+    window.location.hash = '#/comment/'+this.state.data.content.id;
+}
 render() {
   return (
-    <div className={style.CommentItem}>
+    <div className={style.CommentItem} onClick={this.JumpUrl}>
         {this.state.data?[
-            <div className={[style.UserInfo,'childcenter'].join(' ')}>
+            <div className={[style.UserInfo,'childcenter'].join(' ')} key={'info'}>
                 <div className={[style.HeadShot,'childcenter childcontentstart'].join(' ')}>
                     <div className={style.HeadShotBox}>
                         <img src={this.state.data.user.headshot} alt=""/>
@@ -44,7 +49,7 @@ render() {
                     {this.state.data.user.name}
                 </div>
             </div>,
-            <div className={style.CommentContent}>
+            <div className={style.CommentContent} key={'content'}>
                 <TextBox data={this.state.data.content}/>
             </div>,
             <ChildComment data={this.props.data.child}/>

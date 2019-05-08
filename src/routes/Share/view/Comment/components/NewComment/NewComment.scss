@@ -7,7 +7,7 @@
   top: 0px;
   background: #fff;
   animation: slideInUp 0.2s forwards;
-
+  z-index: 999;
   .ContentBox {
     width: calc(100% - 86px);
     // height: 100%;
@@ -98,10 +98,25 @@
           position: relative;
           .ImageBox {
             position: relative;
+            background: #666;
+            transform: scale(0);
+            .ProgressBox{
+              width: 100%;
+              height: 100%;
+              background: rgba($color: #000000, $alpha: 0.6);
+              position: absolute;
+              z-index: 2;
+              .bar{
+                width: 50%;
+                height: 10px;
+                background: #fff;
+              }
+            }
             .box {
               width: 150px;
               height: 150px;
               overflow: hidden;
+              z-index: 1;
               img {
                 width: 100%;
               }
@@ -116,6 +131,7 @@
               right: 0px;
               border-radius: 50%;
               transform: translateX(50%) translateY(-50%);
+              z-index: 3;
               &::after {
                 position: absolute;
                 content: "";
@@ -137,6 +153,12 @@
                 background: #fff;
               }
             }
+          }
+          .able{
+            animation: scaleIn 0.2s forwards;
+          }
+          .unable{
+            animation: scaleOut 0.2s forwards;
           }
           .NewImageButto {
             position: absolute;
@@ -193,5 +215,23 @@
   }
   100% {
     top: 0%;
+  }
+}
+
+@keyframes scaleIn{
+  0%{
+    transform: scale(0);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut{
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(0);
   }
 }

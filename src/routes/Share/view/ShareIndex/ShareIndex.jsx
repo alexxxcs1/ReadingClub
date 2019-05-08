@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import style from './ShareIndex.scss'
 import book from 'assets/book.jpg'
+import readbook from 'assets/readbook.gif'
 import BottomHandle from './components/BottomHandle'
+import {api} from 'common/app'
 
 import TextBox from './components/TextBox'
 
@@ -15,7 +17,8 @@ constructor(props) {
   super(props);
   this.state = {
       id:null,
-      shareType:'text',
+      shareType:null,
+      sharedata:{},
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.createContent = this.createContent.bind(this);
@@ -27,30 +30,51 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-//   console.log(props);
-  
+  let shareid = props.match.params.id;
+  if (shareid == this.state.id) return;
+  this.getData(shareid);
+  this.state.id = shareid;
+  this.setState({
+      id:this.state.id,
+  })
 }
 createContent(){
-    switch (this.state.shareType) {
-        default:
-        case 'text':
-            return <TextBox data={data}/>
-        case 'img':
-            return <img className={style.ContentImage} src='https://source.unsplash.com/400x800?panda' />
+    switch (this.state.sharedata.type) {
+        case '1':
+            return <TextBox data={this.state.sharedata.content}/>
+        case '2':
+            return <img className={style.ContentImage} src={this.state.sharedata.content} />
     }
+}
+getData(id){
+    api.getShareDetail(id).then(res=>{
+        if (res.code === 200) {
+            this.setState({
+                sharedata:res.data,
+            })    
+        }
+    },err=>{
+        console.log(err);
+        
+    })
 }
 render() {
   return (
     <div className={style.ViewBox}>
-        <div className={style.ShareInfo}>
+        {JSON.stringify(this.state.sharedata) === '{}'?
+        <div className={[style.LoadingBox,'childcenter'].join(' ')}>
+            <img src={readbook} alt=""/>
+        </div>
+        :<div className={style.ShareInfo} >
             <div className={[style.UserInfo,'childcenter'].join(' ')}>
                 <div className={[style.UserHead,'childcenter'].join(' ')}>
                     <div className={[style.HeadShot].join(' ')}>
-                        <img src="https://source.unsplash.com/150x150?panda" alt=""/>
+                        <img src={this.state.sharedata.headimgurl?this.state.sharedata.headimgurl:''} alt=""/>
                     </div>
                 </div>
                 <div className={[style.UserName,'childcenter childcontentstart'].join(' ')}>
-                    昵称（姓名）
+                    {this.state.sharedata.nickname?this.state.sharedata.nickname:''}
+                    {this.state.sharedata.uname?'('+this.state.sharedata.uname+')':''}
                 </div>
             </div>
             <div className={[style.BookCover,'childcenter'].join(' ')}>
@@ -58,13 +82,13 @@ render() {
                 <div className={[style.Content,'childcenter'].join(' ')}>
                     <div className={[style.ShareTips,'childcenter'].join(' ')}>给我们分享了这本书</div>
                     <div className={[style.Cover,'childcenter'].join(' ')}>
-                        <div className={style.ImageBox}><img src={book} alt=""/></div>
+                        <div className={[style.ImageBox,'childcenter'].join(' ')}><img src={this.state.sharedata.bookimg?this.state.sharedata.bookimg:''} alt=""/></div>
                     </div>
                     <div className={style.BookName}>
-                        肿瘤治疗血管通道安全指南肿瘤治疗血管通道安全指南
+                        {this.state.sharedata.bookname?this.state.sharedata.bookname:''}
                     </div>
                     <div className={style.BookPage}>
-                        P{Math.round(Math.random() * 100)}
+                        P{this.state.sharedata.pageNum?this.state.sharedata.pageNum:''}
                     </div>
                 </div>
                 <img src={doublepointicon} className={style.doublebackground} alt=""/>
@@ -73,8 +97,8 @@ render() {
             <div className={style.BookShareContent}>
                 {this.createContent()}
             </div>
-        </div>
-        <BottomHandle />
+        </div>}
+        <BottomHandle data={this.state.sharedata}/>
     </div>
    )
    }

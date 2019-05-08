@@ -3,7 +3,7 @@
 
     max-height: 600px;
 
-    overflow:hidden;
+    overflow-y:hidden;
 
     font-size:30px;
     font-weight:300;
@@ -12,9 +12,10 @@
     text-align: justify;
     transition: max-height 0.5s;
     position: relative;
+    word-break: break-all;
     .HandleGroup{
         width: 100%;
-        margin: 32px 0;
+        margin: 15px 0;
         .ImageButton{
             width: 50%;
             flex-grow: 1;

@@ -14,5 +14,11 @@
             width: 30px;
             margin-right: 12px;
         }
+        .Like{
+            filter: none;
+        }
+        .Unlike{
+            filter: grayscale(100%);
+        }
     }
 }
