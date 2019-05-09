@@ -72,9 +72,32 @@ const AskPost = (ajaxinstance) => {
         url
       }))
     };
-    
-    
-    
+    router.getRankList = (bookid,page,pageNum) => {
+      return ajaxinstance.post('readbook/rankingList',qs.stringify({
+        bookid,page,pageNum
+      }))
+    };
+    router.getMyShare = () => {
+      return ajaxinstance.post('readbook/myNotes');
+    }
+    router.IsSubscribe = () => {
+      return ajaxinstance.post('readbook/is_subscribe');
+    }
+    router.getShare = (url) => {
+      return ajaxinstance.post('readbook/getConfig',qs.stringify({
+        url
+      }));
+    }
+    router.SharePost = (type,id) => {
+      return ajaxinstance.post('readbook/setshare',qs.stringify({
+        type,id
+      }));
+    }
+    router.isRegister = (url) => {
+      return ajaxinstance.post('readbook/is_register',qs.stringify({
+        url
+      }));
+    }
     
     
     

@@ -3,7 +3,9 @@ import style from './SelectShare.scss'
 import { Route, Switch ,Link ,Redirect} from "react-router-dom";
 import SelectBook from './view/SelectBook'
 import NewShare from './view/NewShare'
-  
+import shareconfig from 'common/shareconfig'
+import getIsRegister from 'common/getIsRegister'
+
 export class SelectShare extends Component {
 constructor(props) {
   super(props);
@@ -15,6 +17,8 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
   this.refreshProps(this.props);
+  shareconfig(window.location.origin);
+  getIsRegister(window.location.href);
 }
 refreshProps(props) {
   

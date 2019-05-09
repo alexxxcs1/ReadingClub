@@ -7,6 +7,7 @@ import forwardicon from 'assets/forwardicon.png'
 
 import {api} from 'common/app'
 import MessageSystem from 'components/MessageSystem'
+import ShareBox from 'components/ShareBox'
   
 export class BottomHandle extends Component {
 constructor(props) {
@@ -17,6 +18,7 @@ constructor(props) {
      this.refreshProps = this.refreshProps.bind(this);
      this.gotoComment = this.gotoComment.bind(this);
      this.setShareLike = this.setShareLike.bind(this);
+     this.gotoForward = this.gotoForward.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -55,6 +57,12 @@ setShareLike(id){
     console.log(err);
   })
 }
+gotoForward(id){
+  ShareBox(window.location.origin + '/#/share/' + id,{
+    type:'notes',
+    id:id
+  })
+}
 render() {
   return (
     <div className={[style.BottomHandle,'childcenter'].join(' ')}>
@@ -64,7 +72,7 @@ render() {
         <div className={[style.Button,'childcenter'].join(' ')} onClick={this.gotoComment}>
             <img src={commenticon} alt=""/>评论{this.state.data.commentNum}
         </div>
-        <div className={[style.Button,'childcenter'].join(' ')}>
+        <div className={[style.Button,'childcenter'].join(' ')} onClick={this.gotoForward.bind(this,this.state.data.id)}>
             <img src={forwardicon} alt=""/>转发{this.state.data.shareNum}
         </div>
     </div>

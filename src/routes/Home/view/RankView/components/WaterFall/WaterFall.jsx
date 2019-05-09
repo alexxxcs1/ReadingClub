@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link} from 'react-router-dom';
 import style from './WaterFall.scss'
 import commenticon2 from 'assets/commenticon2.png'
 import wechaticon from 'assets/wechaticon.png'
@@ -19,8 +20,6 @@ componentDidMount() {
   this.refreshProps(this.props);
 }
 refreshProps(props) {
-  console.log(props.data);
-    
   this.setState({
     data:props.data?props.data:this.state.data,
   })
@@ -31,24 +30,26 @@ createVideoCard(index){
         let DataObj = this.state.data[z];
         if ((z%2==0)==index) {
             result.push(
+                <Link to={'/share/'+DataObj.id}>
                 <div className={[style.VideoCard,'childcenter childcolumn'].join(' ')}>
                     <div className={style.PosterBox}>
-                        <img src={DataObj.posterurl} alt=""/>
+                        <img src={DataObj.cover} alt=""/>
                     </div>
                     <div className={style.InfoBox}>
-                        <div className={style.TitleBox}>{DataObj.sharename}</div>
+                        <div className={style.TitleBox}>{DataObj.title}</div>
                         <div className={[style.UserBox,'childcenter'].join(' ')}>
                             <div className={[style.UserName,'childcenter childcontentstart'].join(' ')}>
                                 <img src={wechaticon} alt=""/>
-                                <span>{DataObj.username}</span>
+                                <span>{DataObj.nickname}</span>
                             </div>
                             <div className={[style.VideoComment,'childcenter childcontentend'].join(' ')}>
                                 <img src={commenticon2} alt=""/>
-                                <span>{DataObj.countcomment}</span>
+                                <span>{DataObj.commentNum}</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                </Link>
             );
         }  
     }
@@ -58,10 +59,10 @@ render() {
   return (
     <div className={[style.WaterFall,'childcenter childalignstart'].join(' ')}>
         <div className={[style.FallRoad,'childcenter childcolumn childcontentstart'].join(' ')}>
-            {this.createVideoCard(false)}
+            {this.createVideoCard(true)}
         </div>
         <div className={[style.FallRoad,'childcenter childcolumn childcontentstart'].join(' ')}>
-            {this.createVideoCard(true)}
+            {this.createVideoCard(false)}
         </div>
     </div>
    )

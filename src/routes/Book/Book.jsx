@@ -4,6 +4,7 @@ import style from './Book.scss';
 import book from 'assets/book.jpg'
 import flowericon from 'assets/flowericon.png'
 import {api} from 'common/app'
+import shareconfig from 'common/shareconfig'
 
 import readbook from 'assets/readbook.gif'
     
@@ -23,6 +24,7 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
    this.refreshProps(this.props);
+   shareconfig(window.location.origin);
 }
 refreshProps(props) {
     this.setState({

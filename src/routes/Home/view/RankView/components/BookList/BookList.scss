@@ -5,11 +5,19 @@
     height: 310px;
     overflow-x: auto;
     overflow-y: hidden;
+    .LoadingBox{
+      width: 750px;
+      height: 100%;
+      img{
+        height: 80%;
+      }
+    }
     .BookScroll {
       width: auto;
       height: 100%;
       padding: 0 27px;
       pointer-events: none;
+      
       .BookOut {
         height: 100%;
         position: relative;

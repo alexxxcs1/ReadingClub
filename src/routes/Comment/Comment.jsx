@@ -4,6 +4,7 @@ import TextBox from "./components/TextBox";
 import ChildComment from "./components/ChildComment";
 import BottomHandle from "./components/BottomHandle";
 import {api} from 'common/app'
+import shareconfig from 'common/shareconfig'
 
 export class Comment extends Component {
   constructor(props) {
@@ -27,6 +28,10 @@ export class Comment extends Component {
       id:commentid
     })
     this.getData(commentid);
+    shareconfig(window.location.href,{
+      type:'comment',
+      id:commentid
+    })
   }
   getData(id){
     api.getCommentDetail(id).then(res=>{

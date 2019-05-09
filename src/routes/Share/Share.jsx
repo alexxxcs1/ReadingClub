@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch ,Link ,Redirect} from "react-router-dom";
 import style from './Share.scss'
 import {api} from 'common/app'
+import shareconfig from 'common/shareconfig'
 
 import ShareIndex from './view/ShareIndex'
 import Comment from './view/Comment'
@@ -22,6 +23,7 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
   this.refreshProps(this.props);
+  
 }
 refreshProps(props) {
     let child = window.location.href.split('/');
@@ -38,6 +40,10 @@ refreshProps(props) {
     this.setState({
         id:id,
         child:child
+    });
+    shareconfig(window.location.href,{
+      type:'notes',
+      id:id
     });
 }
 getShareDetail_Video(id){

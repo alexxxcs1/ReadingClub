@@ -18,4 +18,29 @@
         color:rgba(51,51,51,1);
         line-height:32px;
     }
+    .LoadingBox{
+        width: 100%;
+        height: 100px;
+        font-size: 25px;
+    }
+}
+
+.NotFound{
+    width: 100%;
+    margin: 110px 0;
+    p:nth-child(1){
+        font-size: 34px;
+        background-image: -webkit-gradient(linear, 0 0, 100 100, color-stop(0,rgba(38,86,28,0.2)), color-stop(0.5,rgba(38,86,28,1)),color-stop(1,rgba(38,86,28,0.2)) );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    p:nth-child(2){
+        font-size:21px;
+        font-weight:300;
+        color:rgba(38,86,28,1);
+        margin: 40px 0;
+    }
+    .readIcon{
+        width: 299px;
+    }
 }

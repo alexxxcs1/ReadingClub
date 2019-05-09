@@ -9,6 +9,8 @@ import NewComment from '../NewComment'
 import {api} from 'common/app'
 import MessageSystem from 'components/MessageSystem'
 
+import ShareBox from 'components/ShareBox'
+
 export class BottomHandle extends Component {
 constructor(props) {
   super(props);
@@ -52,6 +54,12 @@ setShareLike(id){
     console.log(err);
   })
 }
+gotoForward(id){
+  ShareBox(window.location.href,{
+    type:'comment',
+    id:id
+  })
+}
 render() {
   return (
     <div className={[style.BottomHandle,'childcenter'].join(' ')}>
@@ -61,7 +69,7 @@ render() {
         <div className={[style.Button,'childcenter'].join(' ')} onClick={this.SendNewComment}>
             <img src={commenticon} alt=""/>写评论{this.state.data.commentNum}
         </div>
-        <div className={[style.Button,'childcenter'].join(' ')}>
+        <div className={[style.Button,'childcenter'].join(' ')} onClick={this.gotoForward.bind(this,this.state.data.id)}>
             <img src={forwardicon} alt=""/>转发{this.state.data.shareNum}
         </div>
     </div>

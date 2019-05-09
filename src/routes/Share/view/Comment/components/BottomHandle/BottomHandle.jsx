@@ -5,6 +5,8 @@ import commenticon from 'assets/commenticon.png'
 
 import NewComment from '../NewComment'
 import  MessageSystem  from 'components/MessageSystem';
+
+import getIsRegister from 'common/getIsRegister'
   
 export class BottomHandle extends Component {
 constructor(props) {
@@ -26,6 +28,7 @@ refreshProps(props) {
   this.setState(this.state);
 }
 createNewComment(){
+  getIsRegister(window.location.href);
   if (JSON.stringify(this.state.userinfo) === '{}') {
     MessageSystem.message({
       message:'加载中，请稍后',

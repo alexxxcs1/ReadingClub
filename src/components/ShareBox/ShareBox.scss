@@ -1,0 +1,61 @@
+.FixedBox{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba($color: #000000, $alpha: 0.9);
+    z-index: 9999;
+    .ArrowBox{
+        width: 625px;
+        height: 241px;
+        position: relative;
+        img{
+            width: 235px;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            display: block;
+        }
+    }
+    .ShareBox{
+        width: 625px;
+        height: 550px;
+        background: #fff;
+        position: relative;
+        .TitleImage{
+            width: 100%;
+            img{
+                width: 100%;
+                display: block;
+            }
+        }
+        .TextContent{
+            width: calc(100% - 172px);
+            padding: 0 86px;
+            font-size:30px;
+            font-weight:400;
+            color:rgba(100,181,175,1);
+            margin: 53px 0;
+        }
+        .CloseButton{
+            width:197px;
+            height:70px;
+            background: #64B5AF;
+            border-radius: 35px;
+            font-size:28px;
+            font-weight:400;
+            color:rgba(255,255,255,1);
+            margin: 0 auto;
+        }
+        .BackgroundImage{
+            width: 114px;
+            position: absolute;
+            bottom: 0px;
+            right: 36px;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}

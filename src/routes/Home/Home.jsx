@@ -7,6 +7,8 @@ import NoticeView from './view/NoticeView'
 import RankView from './view/RankView'
 import MeView from './view/MeView'
 
+import shareconfig from 'common/shareconfig'
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +26,7 @@ export class Home extends Component {
   }
   refreshProps(props){
     this.getLocation();
+    shareconfig(window.location.href);
   }
   getLocation(){
     let hash = window.location.hash.split('/')

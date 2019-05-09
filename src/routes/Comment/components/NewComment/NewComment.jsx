@@ -66,13 +66,18 @@ submitComment(){
         
     })
 }
+onInputBlur() {
+    document.documentElement.scrollTop = 0;
+    window.pageYOffset = 0;
+    document.body.scrollTop = 0;
+ }
 render() {
   return (
     <div className={style.FixedBox} onClick={this.HandleClose} data-type='dangerbody'>
         <div className={[style.CommentBox,'childcenter'].join(' ')} >
             <div className={[style.ContentBox,'childcenter'].join(' ')} >
                 <div className={style.InputBox} >
-                    <input type="text" value={this.state.comment} onChange={this.HandleStateValue}/>
+                    <input type="text" value={this.state.comment} onBlur={this.onInputBlur} onChange={this.HandleStateValue}/>
                 </div>
                 <div className={[style.SendButton,'childcenter'].join(' ')} onClick={this.submitComment}>
                     {this.state.onAjax?'发送中..':'评论'}
