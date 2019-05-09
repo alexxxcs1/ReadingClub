@@ -42,7 +42,7 @@ jumptoShareDetail(id,e){
   }
 }
 onShare(id){
-  ShareBox(window.location.origin + '/#/share/' + id,{
+  ShareBox(window.location.origin + '' + window.location.pathname + '/#/share/' + id,{
     type:'notes',
     id:id
   })

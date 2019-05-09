@@ -17,7 +17,7 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
   this.refreshProps(this.props);
-  shareconfig(window.location.origin);
+  shareconfig(window.location.origin + '' + window.location.pathname);
   getIsRegister(window.location.href);
 }
 refreshProps(props) {
