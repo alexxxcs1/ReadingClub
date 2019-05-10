@@ -107,7 +107,7 @@ render() {
                             </div>
                             <div className={style.ProcessText}>
                                 <p><span className={style.UnderLine}>评论参与</span></p> 
-                                <p>观看者也可通过上传50字以上的有效评论参与活动，我们会从评论中评选出优秀评论，进行评奖奖励。</p> 
+                                <p>观看者也可通过上传50字以上的有效评论参与活动，我们会从其中评选出优秀评论者给予奖励。</p> 
                             </div>
                         </div>
                     </div>

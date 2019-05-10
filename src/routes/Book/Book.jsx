@@ -60,7 +60,7 @@ createBookContent(){
                         <div className={style.BookName}>{bookdata.name}</div>
                         <div className={style.BookAuthor}>作者： {bookdata.author} </div>
                     </div>
-                    <div className={style.RankButton}><span>查看该组排行榜单></span></div>
+                    {/* <div className={style.RankButton}><span>查看该组排行榜单></span></div> */}
             </div>,
             <div className={style.BookIntroduce}>
                     <div className={[style.IntroduceTitle,'childcenter childcontentstart'].join(' ')}>
