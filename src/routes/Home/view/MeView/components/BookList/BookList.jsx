@@ -97,7 +97,7 @@ createBook(){
   }
   return result;
 }
-componentWillUnmount(){
+componentWillUnmount(){//注销异步操作导致的错误导致的内存泄漏
   this.setState = (state, callback) => {
     return
   }

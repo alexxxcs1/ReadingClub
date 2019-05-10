@@ -77,7 +77,6 @@ Verify(){
   }
 }
 Submit(){
-  console.log(this.state.bookdata);
   let submitobj = JSON.parse(JSON.stringify(this.state.bookdata));
   submitobj.content = submitobj.type == 1?submitobj.text_content:submitobj.image_content;
   if (this.state.onAjax) return;

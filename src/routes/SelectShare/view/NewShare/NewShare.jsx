@@ -5,6 +5,7 @@ import {api} from 'common/app'
 import FillShareInfo from './components/FillShareInfo'
 import UploadVideo from './components/UploadVideo'
 import OtherBookFill from './components/OtherBookFill'
+import getIsRegister from 'common/getIsRegister'
 
 import readbook from 'assets/readbook.gif'
   
@@ -28,6 +29,7 @@ componentWillReceiveProps(nextprops) {
 }
 componentDidMount() {
   this.refreshProps(this.props);  
+  getIsRegister(window.location.href);
 }
 refreshProps(props) {
   let bookid  = props.match.params.id;
@@ -64,11 +66,11 @@ createArray(){
   if (!this.state.bookdata) return;
   let steparrayOther = [
     <OtherBookFill index={0} onStepChange={this.onStepChange} data={this.state.formdata}/>,
-    <FillShareInfo index={1} onStepChange={this.onStepChange} data={this.state.formdata}/>,
+    <FillShareInfo index={1} onStepChange={this.onStepChange} data={this.state.formdata} maxpage={this.state.bookdata.max_page}/>,
     <UploadVideo index={2} onStepChange={this.onStepChange} data={this.state.formdata}/>
   ]
   let steparray = [
-    <FillShareInfo index={0} onStepChange={this.onStepChange} data={this.state.formdata}/>,
+    <FillShareInfo index={0} onStepChange={this.onStepChange} data={this.state.formdata} maxpage={this.state.bookdata.max_page}/>,
     <UploadVideo index={1} onStepChange={this.onStepChange} data={this.state.formdata}/>
   ]
   if (this.state.bookdata.type=='2') {

@@ -69,7 +69,9 @@ a {
   color: unset;
   text-decoration: none !important;
 }
-
+*{
+  font-family: "SourceHanSansCN-Light","Source Han Sans CN", "微软雅黑", "Microsoft YaHei" !important;
+}
 /* body 样式*/
 html,
 body {

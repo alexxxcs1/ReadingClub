@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import style from './BottomHandle.scss'
+import PropTypes from "prop-types";
 
 import commenticon from 'assets/commenticon.png'
 
@@ -28,6 +29,7 @@ refreshProps(props) {
   this.setState(this.state);
 }
 createNewComment(){
+  this.context.HandleVideoStatus(false);
   getIsRegister(window.location.href);
   if (JSON.stringify(this.state.userinfo) === '{}') {
     MessageSystem.message({
@@ -35,10 +37,15 @@ createNewComment(){
     });
     return 
   }
+  let self = this;
   NewComment({
     data:this.state.userinfo,
   },(reply)=>{
-    this.props.onUpdate(reply);
+    this.context.HandleVideoStatus(true);
+    if (reply) {
+      this.props.onUpdate(reply);
+    }
+    
   });
 }
 render() {
@@ -51,4 +58,7 @@ render() {
    )
    }
 }
+BottomHandle.contextTypes = {
+  HandleVideoStatus: PropTypes.func
+};
 export default BottomHandle

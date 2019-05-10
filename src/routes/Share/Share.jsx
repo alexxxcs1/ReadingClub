@@ -3,6 +3,7 @@ import { Route, Switch ,Link ,Redirect} from "react-router-dom";
 import style from './Share.scss'
 import {api} from 'common/app'
 import shareconfig from 'common/shareconfig'
+import PropTypes from "prop-types";
 
 import ShareIndex from './view/ShareIndex'
 import Comment from './view/Comment'
@@ -14,9 +15,11 @@ constructor(props) {
       id:null,
       child:null,
       video:{},
+      videostatus:true,
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.getShareDetail_Video = this.getShareDetail_Video.bind(this);
+     this.HandleVideoStatus = this.HandleVideoStatus.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -24,6 +27,11 @@ componentWillReceiveProps(nextprops) {
 componentDidMount() {
   this.refreshProps(this.props);
   
+}
+getChildContext() {
+  return {
+    HandleVideoStatus:this.HandleVideoStatus,
+  };
 }
 refreshProps(props) {
     let child = window.location.href.split('/');
@@ -62,11 +70,16 @@ getShareDetail_Video(id){
     
   });
 }
+HandleVideoStatus(boolean){
+  this.setState({
+    videostatus:boolean,
+  })
+}
 render() {
   return (
     <div className={style.ShareView} ref='shareview'>
         <div className={[style.VideoBox,'childcenter'].join(' ')} style={{'--backgroundImage':'url('+(this.state.video.cover?this.state.video.cover:'')+')'}}>
-            <video src={this.state.video.video?this.state.video.video:''} poster={this.state.video.cover?this.state.video.cover:''} preload controls="true" poster={null} ref='video' className={style.video} onClick={(e)=>{e.target.play()}}></video>
+            <video src={this.state.video.video?this.state.video.video:''} style={this.state.videostatus?{display:'block'}:{display:'none'}} poster={this.state.video.cover?this.state.video.cover:''} preload controls="true" poster={null} ref='video' className={style.video} onClick={(e)=>{e.target.play()}}></video>
         </div>
         <div className={style.ChildBox}>
             <div className={[style.NavBox,'childcenter'].join(' ')}>
@@ -78,11 +91,14 @@ render() {
                   <Route path='/share/:id/index' component={ShareIndex} />
                   <Route path='/share/:id/comment' component={Comment} />
                   <Redirect from='/share/:id' to='/share/:id/index'/>
-              </Switch>
+                </Switch>
             </div>
         </div>
     </div>
    )
    }
 }
+Share.childContextTypes = {
+  HandleVideoStatus: PropTypes.func
+};
 export default Share

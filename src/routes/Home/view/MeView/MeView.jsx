@@ -63,7 +63,7 @@ render() {
                 <img src={this.state.bookdata.cover} alt=""/>
             </div>
             <div className={style.InfoBox}>
-                <div className={style.TitleBox}>{'DataObj.title'}</div>
+                <div className={style.TitleBox}>{this.state.bookdata.title}</div>
                 <div className={[style.UserBox,'childcenter'].join(' ')}>
                     <div className={[style.UserName,'childcenter '].join(' ')}>
                         <img src={wechaticon} alt=""/>

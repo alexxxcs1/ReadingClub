@@ -26,7 +26,7 @@ refreshProps(props) {
   console.log(props.data);
   
   this.setState({
-      bookdata: props.data?props.data:this.state.bookdata
+      bookdata: JSON.stringify(this.state.bookdata) ==='{}'?props.data:this.state.bookdata
   })
 }
 onStateValueChange(type,e){
@@ -45,6 +45,24 @@ Nextstep(){
 }
 Verify(){
     if (this.state.bookdata.bookname&&this.state.bookdata.bookauthor&&this.state.bookdata.bookcontent) {
+        if (this.state.bookdata.bookname.length>30) {
+          MessageSystem.message({
+            message:'书籍名称不能超过30个字'
+          })
+          return false;
+        }
+        if (this.state.bookdata.bookauthor.length>30) {
+          MessageSystem.message({
+            message:'书籍作者不能超过30个字'
+          })
+          return false;
+        }
+        if (this.state.bookdata.bookcontent.length>300) {
+          MessageSystem.message({
+            message:'书籍介绍不能超过300个字'
+          })
+          return false;
+        }
         return true;
     }else{
         MessageSystem.message({

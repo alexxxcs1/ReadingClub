@@ -43,8 +43,9 @@
         }
         .BookList{
             width: 100%;
+            margin-bottom: 50px;
             .BookItem{
-                width: 100%;
+                width: 630px;
                 height:242px;
                 background: #D8EAEA;
                 margin: 14px 0;
@@ -79,16 +80,6 @@
                 background: #ACDCDA;
                 box-shadow: rgba($color: #000000, $alpha: 0.2) 0 0 25px;
             }
-        }
-        .NextButton{
-            width:254px;
-            height:80px;
-            background: #153110;
-            border-radius: 40px;
-            margin: 43px auto;
-            font-size:34px;
-            font-weight:500;
-            color:rgba(172,220,218,1);
         }
     }
 }

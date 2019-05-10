@@ -117,7 +117,7 @@ render() {
             </div>
             <div className={style.Line}></div>
             <div className={style.MyComment}>
-                <div className={style.TipsTitle}>我的评论{this.state.uploadProgress}</div>
+                <div className={style.TipsTitle}>我的评论</div>
                 <div className={style.CommentBox}>
                     <textarea className={style.textaresbox} onBlur={this.onInputBlur} value={this.state.content} onChange={this.HandleTextAreae} rows="10" placeholder='请在此输入您的评论，字数50+才我们才为你发布噢'></textarea>
                     <div className={[style.ImageGroup,'childcenter childcontentstart'].join(' ')}>
@@ -168,10 +168,10 @@ const View = ({data,onClose})=>{
 const _ViewFunc = (userdata,onClose)=>{
     let div = document.createElement('div');
     const destroy = (reply) => {
-        console.log(reply);
-        
         if (reply) {
             onClose?onClose(reply):'';
+        }else{
+            onClose(null)
         }
         const unmountResult = ReactDOM.unmountComponentAtNode(div);
         if (unmountResult && div.parentNode) {

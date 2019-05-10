@@ -33,8 +33,9 @@ componentDidMount() {
 }
 refreshProps(props) {
   this.setState({
-    bookdata:props.data,
+    bookdata:JSON.stringify(this.state.bookdata)==='{}'?props.data:this.state.bookdata,
     shareType:props.data.type?props.data.type:this.state.shareType,
+    maxpage:parseInt(props.maxpage),
   })
 }
 HandleShareType(type){
@@ -48,10 +49,12 @@ HandleTextValue(e){
     })
 }
 Nextstep(){
-    let json = JSON.parse(JSON.stringify(this.state.bookdata));
-    json.type = this.state.shareType;
-    if (this.Verify()) {
-        this.props.onStepChange(1,json);
+  console.log(this.state.bookdata);
+  
+  if (this.Verify()) {
+      let json = JSON.parse(JSON.stringify(this.state.bookdata));
+      json.type = this.state.shareType;
+      this.props.onStepChange(1,json);
     }
 }
 Beforestep(){
@@ -61,12 +64,10 @@ Beforestep(){
 }
 onInputChange(type,e){
     this.state.bookdata[type] = e.target.value;
-    this.setState({
-        bookdata:this.state.bookdata,
-    })
+    this.setState(this.state)
 }
 onUploadImage(e){
-    let file = e.target.files[0];
+  let file = e.target.files[0];
   let formdata = new FormData();
   formdata.append('file',file);
   formdata.append('type','img');
@@ -96,7 +97,29 @@ onUploadImage(e){
 }
 Verify(){
     let uploadcontent = this.state.shareType==1?this.state.bookdata.text_content:this.state.bookdata.image_content;
+    console.log('----',this.state.bookdata);
+    
     if (this.state.bookdata.title&&this.state.bookdata.pageNum&&uploadcontent) {
+        if (this.state.bookdata.title.length<5) {
+          MessageSystem.message({
+            message:'读书笔记标题不低于五个字'
+          })
+          return false;
+        }
+        if (this.state.bookdata.pageNum>this.state.maxpage) {
+          MessageSystem.message({
+            message:'超过书籍最大页数'
+          })
+          return false;
+        }
+        if (this.state.shareType == 1) {
+          if (this.state.bookdata.text_content.length<50||this.state.bookdata.text_content.length>800) {
+            MessageSystem.message({
+              message:'原文分享字数必须在50到800之间'
+            })
+            return false;
+          }
+        }
         return true;
     }else{
         MessageSystem.message({
@@ -109,7 +132,7 @@ onInputBlur() {
     document.documentElement.scrollTop = 0;
     window.pageYOffset = 0;
     document.body.scrollTop = 0;
- }
+}
 render() {
   return (
     <div className={style.ContentBox}>

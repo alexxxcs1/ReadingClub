@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import style from './SelectBook.scss'
 import flowericon from 'assets/flowericon.png'
 import book from 'assets/book.jpg'
 import readbook from 'assets/readbook.gif'
 import MessageSystem from 'components/MessageSystem'
+import getIsRegister from 'common/getIsRegister'
 
 import {api} from 'common/app'
   
@@ -11,15 +13,12 @@ export class SelectBook extends Component {
 constructor(props) {
   super(props);
   this.state = {
-      selected:null,
       bookdata:[
           
       ]
   };
      this.refreshProps = this.refreshProps.bind(this);
-     this.selectBook = this.selectBook.bind(this);
      this.createBook = this.createBook.bind(this);
-     this.Nextstep = this.Nextstep.bind(this);
      this.getBookList = this.getBookList.bind(this);
 }
 componentWillReceiveProps(nextprops) {
@@ -30,14 +29,10 @@ componentDidMount() {
   this.refreshProps(this.props);
   
   this.getBookList();
+  getIsRegister(window.location.href);
 }
 refreshProps(props) {
   
-}
-selectBook(id){
-    this.setState({
-        selected:id,
-    })
 }
 getBookList(){
     api.getBookList().then(res=>{
@@ -57,27 +52,20 @@ createBook(){
     for (let z = 0; z < this.state.bookdata.length; z++) {
         const bookdata = this.state.bookdata[z];
         result.push(
-            <div className={[style.BookItem,this.state.selected == bookdata.id?style.Focus:'','childcenter'].join(' ')} onClick={this.selectBook.bind(this,bookdata.id)}>
-                <div className={[style.CoverBox,'childcenter'].join(' ')}>
-                    <img src={bookdata.img} className={style.Cover} alt=""/>
+            <Link to={'/newshare/book/'+bookdata.id}>
+                <div className={[style.BookItem,'childcenter'].join(' ')} >
+                    <div className={[style.CoverBox,'childcenter'].join(' ')}>
+                        <img src={bookdata.img} className={style.Cover} alt=""/>
+                    </div>
+                    <div className={[style.BookInfo,'childcenter childcolumn childalignstart'].join(' ')}>
+                        <div className={style.BookName}>{bookdata.name}</div>
+                        {bookdata.author? <div className={style.BookAuthor}>作者： {bookdata.author} </div>:''}
+                    </div>
                 </div>
-                <div className={[style.BookInfo,'childcenter childcolumn childalignstart'].join(' ')}>
-                    <div className={style.BookName}>{bookdata.name}</div>
-                    {bookdata.author? <div className={style.BookAuthor}>作者： {bookdata.author} </div>:''}
-                </div>
-            </div>
+            </Link>
         );
     }
     return result;
-}
-Nextstep(){
-    if (!this.state.selected) {
-        MessageSystem.message({
-            message:'请先选择一本书！'
-        });
-        return;
-    }
-    window.location.hash = '#/newshare/book/'+this.state.selected;
 }
 render() {
   return (
@@ -90,7 +78,6 @@ render() {
             <div className={[style.BookList,'childcenter childcolumn'].join(' ')}>
                 {this.createBook()}
             </div>
-            <div className={[style.NextButton,'childcenter'].join(' ')} onClick={this.Nextstep}>下一步</div>
         </div>:<div className={[style.LoadingBox,'childcenter'].join(' ')}>
             <img src={readbook} alt=""/>
         </div>}

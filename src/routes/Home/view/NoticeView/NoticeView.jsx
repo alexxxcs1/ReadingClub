@@ -47,11 +47,11 @@ render() {
                 </div>
                 <div className={[style.DropBox,this.state.onShow == 'rule'?style.onShow:''].join(' ')}>
                     <div className={style.RuleContent}>
-                        <p><span className={style.UnderLine}>参赛时间</span>：2019年5月10日至6月10日</p> 
+                        <p><span className={style.UnderLine}>参赛时间</span>：2019年5月10日至6月12日</p> 
                         <p><span className={style.UnderLine}>评选方式</span>：人气投票(30%)+有效评论数量及质量(70%)</p> 
                         <p><span className={style.UnderLine}>人气投票</span>：视频上传完成后，可通过转发获得观看者点赞。每个微信ID每天可点赞一次。</p> 
                         <p><span className={style.UnderLine}>线上有效评论</span>：观看者在已上传好的视频后跟帖，字数不少于50字，可以配图进行说明。每个微信ID对同一视频只可评论一次。</p> 
-                        <p><span className={style.UnderLine}>奖项设置(7个参赛组，给定6本书+自由上传)</span>：一等奖1名，二等奖2名；三等奖3名</p> 
+                        <p><span className={style.UnderLine}>奖项设置(7个参赛组，给定6本书+自由上传)</span>：一等奖1名，二等奖2名；三等奖3名；优秀评论奖7名</p> 
                         <p><span className={style.UnderLine}>视频参数要求</span>：演说时长小于3分钟，大于1分钟，大小不超过100Mb</p> 
                         <p><span className={style.UnderLine}>其他要求</span>：请在投稿时附上投稿者的单位信息和联系方式，方便工作人员与您联系。</p> 
                         <p><span className={style.UnderLine}>参赛次数</span>：每一个微信ID可参加三次比赛，不限组别</p> 
