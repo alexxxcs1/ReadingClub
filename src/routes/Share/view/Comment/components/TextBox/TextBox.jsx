@@ -46,7 +46,7 @@ createTextContent(){
                 this.state.data,
                 <div className={[style.HandleGroup,'childcenter childcontentstart'].join(' ')} >
                   <div className={[style.ImageButton,'childcenter childcontentstart'].join(' ')} onClick={this.ShowImage}>
-                    <span><img src={mountainicon} className={style.commentimages} alt="" data-safebody='true'/>评论配图</span>
+                    <span data-safebody='true'><img src={mountainicon} className={style.commentimages} alt="" data-safebody='true'/>评论配图</span>
                   </div>
                 </div>
               ]:this.state.data;
@@ -57,7 +57,7 @@ createTextContent(){
                 <div className={[style.HandleGroup,'childcenter childcontentstart'].join(' ')} >
                   {this.state.image?
                   <div className={[style.ImageButton,'childcenter childcontentstart'].join(' ')} onClick={this.ShowImage}>
-                    <span><img src={mountainicon} className={style.commentimages} alt=""/>评论配图</span>
+                    <span data-safebody='true'><img src={mountainicon} className={style.commentimages} alt="" data-safebody='true'/>评论配图</span>
                   </div>:''}
                   <div className={[style.ShowallButton,'childcenter childcontentend'].join(' ')}>
                     <span onClick={this.HandleHideAll.bind(this,false)} data-safebody='true'>(展开)</span>
@@ -71,7 +71,7 @@ createTextContent(){
               this.state.data,
               <div className={[style.HandleGroup,'childcenter childcontentstart'].join(' ')} >
                 <div className={[style.ImageButton,'childcenter childcontentstart'].join(' ')} onClick={this.ShowImage}>
-                  <span><img src={mountainicon} className={style.commentimages} alt="" data-safebody='true'/>评论配图</span>
+                  <span data-safebody='true'><img src={mountainicon} className={style.commentimages} alt="" data-safebody='true'/>评论配图</span>
                 </div>
               </div>
             ]:this.state.data;
