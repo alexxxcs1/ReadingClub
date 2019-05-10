@@ -120,7 +120,7 @@ render() {
                 </div>
                 <div className={[style.DropBox,this.state.onShow == 'awards'?style.onShow:''].join(' ')}>
                     <div className={style.RuleContent}>
-                        <p><span className={style.UnderLine}>参赛时间</span>：2019年5月10日至6月10日</p> 
+                        <p><span className={style.UnderLine}>参赛时间</span>：2019年5月10日至6月12日</p> 
                         <p><span className={style.UnderLine}>评选方式</span>：人气投票(30%)+有效评论数量及质量(70%)</p> 
                         <p><span className={style.UnderLine}>人气投票</span>：视频上传完成后，可通过转发获得观看者点赞。每个微信ID每天可点赞一次。</p> 
                         <p><span className={style.UnderLine}>线上有效评论</span>：观看者在已上传好的视频后跟帖，字数不少于50字，可以配图进行说明。每个微信ID对同一视频只可评论一次。</p> 
