@@ -82,7 +82,7 @@ render() {
         </div>
       </div>
       <Link to={'/newshare/select'}><div className={[style.SignUpButton,'childcenter'].join(' ')}>报名成为读书笔记分享者</div></Link>
-      <div className={style.TimeTips}>截止时间：2019年6月10日</div>
+      <div className={style.TimeTips}>截止时间：2019年6月12日</div>
     </div>
    )
    }

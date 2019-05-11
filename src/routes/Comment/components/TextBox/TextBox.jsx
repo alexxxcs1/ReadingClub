@@ -39,7 +39,8 @@ ShowImage(){
 createTextContent(){
     if (this.state.data===null) return;
     const maxlength = 150;
-    switch (this.state.hideall) {
+    // switch (this.state.hideall) {
+    switch (false) {
         case true:
             if (this.state.data.length<maxlength) {
               return this.state.image?[

@@ -44,8 +44,15 @@ HandleStateValue(e){
     })
 }
 submitComment(){
-    console.log(this.state.comment);
-    if (!this.state.comment||this.state.onAjax) return;
+    if (this.state.onAjax) {
+        return
+    };
+    if (!this.state.comment) {
+        MessageSystem.message({
+            message:'评论不能为空'
+        })
+        return
+    }
     this.setState({
         onAjax:true,
     })

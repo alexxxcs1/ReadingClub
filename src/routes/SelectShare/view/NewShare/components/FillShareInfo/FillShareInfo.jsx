@@ -23,7 +23,7 @@ constructor(props) {
   this.onInputChange = this.onInputChange.bind(this);
   this.Verify = this.Verify.bind(this);
   this.onInputBlur = this.onInputBlur.bind(this);
-  this.onUploadImage = this.onUploadImage.bind(this);
+  this.onImageUpdata = this.onImageUpdata.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -66,34 +66,9 @@ onInputChange(type,e){
     this.state.bookdata[type] = e.target.value;
     this.setState(this.state)
 }
-onUploadImage(e){
-  let file = e.target.files[0];
-  let formdata = new FormData();
-  formdata.append('file',file);
-  formdata.append('type','img');
-  e.target.value = '';
-  api.uploadFile(formdata,(progressEvent)=>{
-    var complete = (progressEvent.loaded / progressEvent.total);
-      this.state.uploadProgress = Math.min(complete,0.9);
-      this.setState(this.state);
-  }).then(res=>{
-    if (res.code == 200) {
-      this.state.bookdata.image_content = res.data.url;
-      this.setState({
-        uploadProgress:1,
-        bookdata:this.state.bookdata,
-      })
-    }else{
-      this.setState({
-        uploadProgress:0,
-      })
-      MessageSystem.message({
-        message:res.msg
-      })
-    }
-  },err=>{
-    console.log(err);
-  })
+onImageUpdata(array){
+  this.state.bookdata.image_content = array;
+  this.setState(this.state);
 }
 Verify(){
     let uploadcontent = this.state.shareType==1?this.state.bookdata.text_content:this.state.bookdata.image_content;
@@ -133,6 +108,7 @@ onInputBlur() {
     window.pageYOffset = 0;
     document.body.scrollTop = 0;
 }
+
 render() {
   return (
     <div className={style.ContentBox}>
@@ -177,16 +153,7 @@ render() {
                         )
                     case 2:
                         return (
-                            <div className={style.ImageBox}>
-                                {this.state.bookdata.image_content?(
-                                    <div className={style.ImageViewBox}>
-                                        <img src={this.state.bookdata.image_content} alt=""/>
-                                        <div className={style.ClickTips} onClick={LongImageView.bind(this,this.state.bookdata.image_content)}>点击查看原图</div>
-                                        <div className={style.ReLoadButton} onClick={()=>{this.refs.imgfile.click()}}>重新上传</div>
-                                    </div>
-                                ):<div className={style.AddIcon} onClick={()=>{this.refs.imgfile.click()}}></div>}
-                                <input type="file" ref={'imgfile'} onChange={this.onUploadImage} style={{display:'none'}}/>
-                            </div>
+                            <ImageUploadBox imageArray={this.state.bookdata.image_content} onUpdate={this.onImageUpdata}/>
                         )
                 }
             })()}
@@ -199,4 +166,103 @@ render() {
    )
    }
 }
+
+class ImageUploadBox extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      uploadProgress:0,
+      imageArray:[],
+    };
+    this.HandleUploadImage = this.HandleUploadImage.bind(this);
+    this.refreshProps = this.refreshProps.bind(this);
+  }
+  componentDidMount(){
+    this.refreshProps(this.props)
+  }
+  componentWillReceiveProps(nextprops){
+   this.refreshProps(nextprops) 
+  }
+  refreshProps(props){
+    this.state.imageArray = this.state.imageArray.length == 0 && props.imageArray ? props.imageArray : this.state.imageArray;
+    this.setState(this.state);
+  }
+  HandleUploadImage(e){
+    let file = e.target.files[0];
+    let formdata = new FormData();
+    formdata.append('file',file);
+    formdata.append('type','img');
+    e.target.value = '';
+    this.state.imageArray.push({
+      url:null,
+      uploadProgress:0,
+    });
+    let index = this.state.imageArray.length-1;
+    this.setState(this.state);
+    api.uploadFile(formdata,(progressEvent)=>{
+      var complete = (progressEvent.loaded / progressEvent.total);
+        this.state.imageArray[index].uploadProgress = Math.min(complete,0.9);
+        this.setState(this.state);
+    }).then(res=>{
+      if (res.code == 200) {
+        this.state.imageArray[index].url = res.data.url;
+        this.state.imageArray[index].uploadProgress = 1;
+        this.props.onUpdate(this.state.imageArray);
+        this.setState({
+          imageArray:this.state.imageArray,
+        })
+      }else{
+        this.state.imageArray.splice(index,1);
+        this.setState({
+          imageArray:this.state.imageArray,
+          uploadProgress:0,
+        })
+        MessageSystem.message({
+          message:res.msg
+        })
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+  HandleDelete(index){
+    this.state.imageArray.splice(index,1);
+    this.props.onUpdate(this.state.imageArray);
+    this.setState(this.state);
+  }
+  ViewLongImage(url){
+    LongImageView(url);
+  }
+  createImageBox(){
+    let result = [];
+    for (let z = 0; z < this.state.imageArray.length; z++) {
+      const imageobj = this.state.imageArray[z];
+      result.push(
+        <div className={[style.ImageCover,'childcenter'].join(' ')}>
+            <div className={style.DeleteButton} onClick={this.HandleDelete.bind(this,z)}></div>
+            <div className={[style.CoverBox,'childcenter'].join(' ')} onClick={this.ViewLongImage.bind(this,imageobj.url)}>
+              <img src={imageobj.url} className={style.Cover} alt=""/>
+            </div>
+            {imageobj.uploadProgress == 0||imageobj.uploadProgress == 1?'':<div className={[style.ProgressCircle,'childcenter'].join(' ')}>
+              <svg width="120" height="120" className={style.ProgressSvg}>
+                  <text  x="50%" y="50%" fill="rgba(100,181,175,1)" fontSize='12' textAnchor='middle' dominantBaseline='middle'>{Math.round(imageobj.uploadProgress*100)}%</text >
+                  <circle cx="50%" cy="50%" r="20" stroke-width="3" stroke-linecap='round ' stroke="rgba(100,181,175,1)" fill="none" strokeDasharray={754*imageobj.uploadProgress +" 754"}></circle>
+              </svg>
+            </div>}
+        </div>
+      )
+    }
+    return result;
+  }
+  render(){
+    return (
+      <div className={[style.ImageBox,'childcenter childcontentstart'].join(' ')}>
+        {this.createImageBox()}
+        {this.state.imageArray.length<4?<div className={style.AddIcon} onClick={()=>{this.refs.uploadfile.click()}}></div>:''}
+        <input type="file" ref='uploadfile' style={{display:'none'}} onChange={this.HandleUploadImage}/>
+      </div>
+    )
+  }
+}
+
 export default FillShareInfo

@@ -3,6 +3,7 @@ import style from './RankView.scss'
 import BookList from './components/BookList'
 import WaterFall from './components/WaterFall'
 import readbook from 'assets/readbook.gif'
+import notfoundrank from 'assets/notfoundrank.png'
 
 import {api} from 'common/app'
 
@@ -121,7 +122,7 @@ render() {
           <div className={[style.NotFound,'childcenter childcolumn'].join(' ')}>
             <p>等你带我们开启一本好书</p>
             <p>点击上方“报名成为读书笔记分享者”即刻参赛</p>
-            <img src={readbook} className={style.readIcon} alt=""/>
+            <img src={notfoundrank} className={style.readIcon} alt=""/>
           </div>
         ) :<WaterFall data={this.state.RankData?this.state.RankData:[]}/>}
         {this.state.onAjax&&this.state.RankData.length>0?<div className={[style.LoadingBox,'childcenter'].join(' ')}>加载中...</div>:''}

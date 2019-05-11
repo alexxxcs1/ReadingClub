@@ -33,6 +33,9 @@ refreshProps(props) {
 }
 SendNewComment(){
   NewComment(this.state.data,(value)=>{
+    this.setState({
+      commentNum:parseInt(this.state.data.commentNum)+1
+    });
     this.props.onUpdata(value);
   });
 }

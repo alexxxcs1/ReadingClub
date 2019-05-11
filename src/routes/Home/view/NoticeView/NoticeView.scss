@@ -1,9 +1,8 @@
 @import "../public.scss";
 
 .NoticeBox{
-    width: calc(100% - 110px);
-    padding: 33px 55px;
-
+    width: calc(100% - 55px);
+    padding: 33px 55px 0 33px;
     .ItemBox{
         width: 100%;
         
@@ -44,7 +43,7 @@
                 }
             }
         }
-        
+
         .DropBox{
             width: 100%;
             overflow: hidden;
@@ -53,6 +52,10 @@
             // display: none;
             // max-height: 0px;
             // animation: scrollOut 0.2s forwards;
+            .AwardBox{
+                width: 100%;
+                display: block;
+            }
             .RuleContent{
                 width: calc(100% - 34px);
                 padding: 17px;
@@ -99,10 +102,13 @@
                 box-shadow: #D8EAEA 0 -10px 0 inset;
             }
         }
+        .WideBox{
+            width: 750px;
+        }
         .onShow{
             // animation: scrollIn 0.2s forwards;
             // display: block;
-            max-height: 1500px;
+            max-height: 3000px;
 
         }
     }

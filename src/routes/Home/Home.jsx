@@ -20,6 +20,9 @@ export class Home extends Component {
   }
   componentDidMount() {
     this.refreshProps(this.props);
+    document.body.addEventListener('touchmove',(e)=>{
+      e.preventDefault
+    })
   }
   componentWillReceiveProps(nextprops){
     this.refreshProps(nextprops);

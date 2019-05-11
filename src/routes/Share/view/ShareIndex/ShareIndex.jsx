@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link} from 'react-router-dom';
 import style from './ShareIndex.scss'
 import book from 'assets/book.jpg'
 import readbook from 'assets/readbook.gif'
@@ -49,8 +50,18 @@ createContent(){
         case '1':
             return <TextBox data={this.state.sharedata.content}/>
         case '2':
-            return <img className={style.ContentImage} src={this.state.sharedata.content} />
+            return this.createImageArray(this.state.sharedata.content);
     }
+}
+createImageArray(array){
+    let result = [];
+    for (let z = 0; z < array.length; z++) {
+        const image = array[z];
+        result.push(
+            <img className={style.ContentImage} src={image.url} />
+        )
+    }
+    return result
 }
 getData(id){
     api.getShareDetail(id).then(res=>{
@@ -82,7 +93,12 @@ render() {
                     {this.state.sharedata.nickname?this.state.sharedata.nickname:''}
                     {this.state.sharedata.uname?'('+this.state.sharedata.uname+')':''}
                 </div>
-            </div>
+                <div className={[style.GoIndexButton,'childcenter'].join(' ')}>
+                    <Link to={'/'} className={[style.Link,'childcenter'].join(' ')}>
+                        查看活动详情 >
+                    </Link>
+                </div>
+            </div> 
             <div className={[style.BookCover,'childcenter'].join(' ')}>
                 
                 <div className={[style.Content,'childcenter'].join(' ')}>
@@ -101,6 +117,7 @@ render() {
                 <img src={flowericon} className={style.flowerbackground} alt=""/>
             </div>
             <div className={style.BookShareContent}>
+                <p className={style.ShareTitle}>{this.state.sharedata.title?this.state.sharedata.title:''}</p>
                 {this.createContent()}
             </div>
         </div>}

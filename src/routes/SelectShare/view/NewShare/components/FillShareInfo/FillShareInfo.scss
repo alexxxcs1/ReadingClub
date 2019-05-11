@@ -139,41 +139,71 @@
         }
         .ImageBox{
             width: 100%;
-            height: 339px;
+            height: 185px;
             background: #f2f2f2;
-            .ImageViewBox{
-                width: 100%;
-                height: 100%;
-                position: relative;
-                img{
-                    width: 100%;
-                    height: 100%;
-                    display: block;
-                }
-                .ClickTips{
+            position: relative;
+            .DeleteButton{
+                width: 30px;
+                height: 30px;
+                background: #153110;
+                border-radius: 15px;
+                position: absolute;
+                top: -15px;
+                right: -15px;
+                &::after{
                     position: absolute;
-                    padding: 10px;
-                    border-radius: 5px;
-                    bottom: 5px;
-                    right: 5px;
-                    background: #64B5AF;
-                    color: #fff;
+                    content: '';
+                    width: 20px;
+                    height: 2px;
+                    background: #fff;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%) rotate(45deg);
                 }
-                .ReLoadButton{
+                &::before{
                     position: absolute;
-                    padding: 10px;
-                    border-radius: 5px;
-                    bottom: 5px;
-                    left: 5px;
-                    background: #64B5AF;
-                    color: #fff;
+                    content: '';
+                    width: 20px;
+                    height: 2px;
+                    background: #fff;
+                    top: 50%;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-50%) rotate(-45deg);
                 }
             }
-            
-            .AddIcon{
-                width: 100%;
-                height: 100%;
+            .ImageCover{
+                width: 138px;
+                height: 138px;
                 position: relative;
+                margin: 0 9.7px;
+                background: #fff;
+                
+                .CoverBox{
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    .Cover{
+                        width: 100%;
+                    }
+                }
+                
+                .ProgressCircle{
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    background: rgba($color: #000000, $alpha: 0.2);
+                    transform: translateX(-50%) translateY(-50%);
+                    overflow: hidden;
+                }
+            }
+            .AddIcon{
+                width: 138px;
+                height: 138px;
+                position: relative;
+                margin: 0 9.7px;
+                background: #fff;
                 &::after{
                     position: absolute;
                     content: '';

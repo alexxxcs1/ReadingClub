@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { Link} from 'react-router-dom';
 import style from "./Comment.scss";
 import TextBox from "./components/TextBox";
 import ChildComment from "./components/ChildComment";
 import BottomHandle from "./components/BottomHandle";
 import {api} from 'common/app'
 import shareconfig from 'common/shareconfig'
+
+import moreflowericon from 'assets/moreflowericon.png'
 
 export class Comment extends Component {
   constructor(props) {
@@ -71,6 +74,11 @@ export class Comment extends Component {
                 )}>
                 {this.state.data.name}
               </div>
+              <div className={[style.GoIndexButton,'childcenter'].join(' ')}>
+                    <Link to={'/'} className={[style.Link,'childcenter'].join(' ')}>
+                        查看活动详情 >
+                    </Link>
+                </div>
             </div>
             <div className={style.ContentBox}>
               <TextBox
@@ -88,6 +96,12 @@ export class Comment extends Component {
           </div>
           <div className={style.BottomHandle}>
               <BottomHandle data={this.state.data} onUpdata={this.onUpdataComment}/>
+          </div>
+          <div className={[style.ReturnButton,'childcenter'].join(' ')}>
+                <Link className={[style.Link,'childcenter'].join(' ')} to={this.state.data.nid?'/share/'+this.state.data.nid:''}>
+                <span>查看TA评论的读书笔记</span>
+                </Link>
+                <img src={moreflowericon} className={style.ButtonBackground} alt=""/>
           </div>
         </div>
       </div>

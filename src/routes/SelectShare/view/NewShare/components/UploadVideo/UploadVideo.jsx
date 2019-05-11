@@ -118,7 +118,7 @@ render() {
             <span onClick={()=>{this.refs.file.click()}}>重新选择</span>
           </div>)
         :
-        (<div className={[style.Tips,'childcenter'].join(' ')}>请在这里选择您要上传的视频</div>)}
+        (<div className={[style.Tips,'childcenter'].join(' ')}>请点击上方“+”选择需要上传的视频，视频时长不超过3分钟，文件控制在30M以内噢</div>)}
         {this.state.uploadProgress==0?'': <div className={[style.SVGbox,'childcenter'].join(' ')}>
             <svg width="280" height="280" className={style.ProgressSvg}>
                 <text  x="50%" y="50%" fill="rgba(100,181,175,1)" fontSize='48' textAnchor='middle' dominantBaseline='middle'>{Math.round(this.state.uploadProgress*100)}%</text >

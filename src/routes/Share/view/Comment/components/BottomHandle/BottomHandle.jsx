@@ -30,23 +30,33 @@ refreshProps(props) {
 }
 createNewComment(){
   this.context.HandleVideoStatus(false);
-  getIsRegister(window.location.href);
-  if (JSON.stringify(this.state.userinfo) === '{}') {
-    MessageSystem.message({
-      message:'加载中，请稍后',
-    });
-    return 
-  }
-  let self = this;
-  NewComment({
-    data:this.state.userinfo,
-  },(reply)=>{
-    this.context.HandleVideoStatus(true);
-    if (reply) {
-      this.props.onUpdate(reply);
+  let a = getIsRegister(window.location.href).then(res=>{
+    if (res) {
+      if (JSON.stringify(this.state.userinfo) === '{}') {
+        MessageSystem.message({
+          message:'加载中，请稍后',
+        });
+        this.context.HandleVideoStatus(true);
+        return 
+      }
+      let self = this;
+      NewComment({
+        data:this.state.userinfo,
+      },(reply)=>{
+        this.context.HandleVideoStatus(true);
+        if (reply) {
+          this.props.onUpdate(reply);
+        }
+      });
+    }else{
+      MessageSystem.message({
+        message:'请先注册',
+      });
+      this.context.HandleVideoStatus(true);
     }
     
   });
+  
 }
 render() {
   return (

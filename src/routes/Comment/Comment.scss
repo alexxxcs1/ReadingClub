@@ -1,54 +1,94 @@
-.CommentView{
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+.CommentView {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    .CommentContent{
-        width: calc(100% - 92px);
-        height: 100%;
-        padding: 0 46px;
-        overflow: hidden;
-        .Content{
-            width: 100%;
-            height: calc(100% - 95px - 100px);
-            overflow-y: auto;
-            .UserInfo{
-                width: 100%;
-                height: 150px;
-                margin: 15px 0;
-                .HeadShot{
-                    width: 128px;
-                    height: 100%;
-    
-                    .HeadShotImage{
-                        width: 110px;
-                        height: 110px;
-                        border-radius: 50%;
-                        overflow: hidden;
-                        img{
-                            width: 100%;
-                            display: block;
-                        }
-                    }
-                }
-                .UserName{
-                    width: calc(100% - 128px);
-                    height: 100%;
-                    font-size:32px;
-                    font-weight:400;
-                    color:rgba(0,0,0,1);
-                }
+  .CommentContent {
+    width: calc(100% - 92px);
+    height: 100%;
+    padding: 0 46px;
+    overflow: hidden;
+    .Content {
+      width: 100%;
+      height: calc(100% - 95px - 100px);
+      overflow-y: auto;
+      .UserInfo {
+        width: 100%;
+        height: 150px;
+        margin: 15px 0;
+        .HeadShot {
+          width: 128px;
+          height: 100%;
+
+          .HeadShotImage {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+              width: 100%;
+              display: block;
             }
-            .ContentBox{
-                width: 100%;
-            }
+          }
         }
-        
-        .BottomHandle{
+        .UserName {
+          width: calc(100% - 128px - 230px);
+          height: 100%;
+          font-size: 32px;
+          font-weight: 400;
+          color: rgba(0, 0, 0, 1);
+        }
+        .GoIndexButton {
+          width: 230px;
+          height: 70px;
+          background: linear-gradient(90deg, #d4e9e8, #acdcda);
+          border-radius: 35px;
+          box-shadow: #fff 0 0 0 2px inset, #acdcda 0 0 10px;
+          font-size: 26px;
+          font-weight: bold;
+          color: rgba(21, 49, 16, 1);
+          .Link {
             width: 100%;
-            height: 95px;
-            margin-bottom: 100px;
+            height: 100%;
+          }
+        }
+      }
+      .ContentBox {
+        width: 100%;
+      }
+    }
+
+    .BottomHandle {
+      width: 100%;
+      height: 95px;
+    //   margin-bottom: 100px;
+    }
+    .ReturnButton{
+        width: 411px;
+        height: 80px;
+        margin: 0 auto;
+        background: linear-gradient(90deg,#ACDCDA,#D4E9E8);
+        border-radius: 40px;
+        font-size:26px;
+        font-weight:bold;
+        color:rgba(21,49,16,1);
+        position: relative;
+        .Link{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .ButtonBackground{
+            width: 95px;
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            transform: translateX(50%) translateY(-50%);
+            pointer-events: none;
+            z-index: 0;
         }
     }
+  }
 }

@@ -15,6 +15,7 @@ constructor(props) {
   this.state = {};
      this.refreshProps = this.refreshProps.bind(this);
      this.setShare = this.setShare.bind(this);
+     this.createShareText = this.createShareText.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -29,6 +30,15 @@ setShare(){
 refreshProps(props) {
   console.log(props);
 }
+createShareText(){
+    switch (this.props.sharedata.type) {
+        default:
+        case 'note':
+            return '让书本知识带来更多可能';
+        case 'comment':
+            return '看看大家还有哪些补充';
+    }
+}
 render() {
   return (
     <div className={[style.FixedBox,'childcenter childcolumn childcontentstart'].join(' ')} >
@@ -42,7 +52,7 @@ render() {
             <div className={[style.TextContent,'childcenter childcolumn childalignstart'].join(' ')}>
                 <span>快点击右上角</span>
                 <span>发送给好友或分享到朋友圈</span>
-                <span>让书本知识带来更多可能</span>
+                <span>{this.createShareText()}</span>
             </div>
             <div className={[style.CloseButton,'childcenter'].join(' ')} onClick={this.props.onClose}>我知道了</div>
             <div className={style.BackgroundImage}>
