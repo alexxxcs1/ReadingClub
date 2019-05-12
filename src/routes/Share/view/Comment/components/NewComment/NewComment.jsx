@@ -7,6 +7,7 @@ import mountainicon from 'assets/mountainicon.png'
 import moreflowericon from 'assets/moreflowericon.png'
 import MessageSystem from 'components/MessageSystem'
 import LongImageView from 'components/LongImageView'
+import ShareBox from 'components/ShareBox'
 import {api} from 'common/app'
   
 export class NewComment extends Component {
@@ -76,10 +77,16 @@ SubmitComment(){
     api.CommentToShare(this.state.data.nid,this.state.content,this.state.imgurl).then(res=>{
         if (res.code === 200) {
             this.props.onClose(res.data);
+            ShareBox(window.location.href,{
+                type:'newcomment',
+                id:res.data.id
+            })
+        }else{
+            MessageSystem.message({
+                message:res.msg
+            })
         }
-        MessageSystem.message({
-            message:res.msg
-        })
+        
     },err=>{
         console.log(err);
     })

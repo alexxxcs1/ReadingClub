@@ -3,6 +3,8 @@ import style from './UploadVideo.scss'
 import flowericon from 'assets/flowericon.png'
 import book from 'assets/book.jpg'
 import MessageSystem from 'components/MessageSystem'
+import ShareBox from 'components/ShareBox'
+
 
 import {api} from 'common/app'
   
@@ -85,9 +87,13 @@ Submit(){
   })
   api.SubmitBookShare(submitobj).then(res=>{
     if (res.code === 200) {
-      MessageSystem.message({
-        message:res.msg
-      });
+      // MessageSystem.message({
+      //   message:res.msg
+      // });
+      ShareBox(window.location.href,{
+        type:'newnote',
+        id:res.data.id
+      })
       window.location.hash = '#share/'+res.data.id;
     }else{
       MessageSystem.message({

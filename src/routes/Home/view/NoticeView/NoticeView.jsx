@@ -12,7 +12,7 @@ export class NoticeView extends Component {
 constructor(props) {
   super(props);
   this.state = {
-      onShow:null,
+      onShow:'rule',
   };
      this.refreshProps = this.refreshProps.bind(this);
      this.HandleDropBox = this.HandleDropBox.bind(this);

@@ -78,7 +78,7 @@ render() {
         大咖观察团
       </div>
       <div className={style.TipsContent}>
-        看看行业大咖为我们加油打气
+        点选即可播放视频，看看行业大咖为我们加油打气
       </div>
       <div className={style.VideoList}>
         <SlideBox boxwidth={312}>

@@ -78,6 +78,11 @@ onInputBlur() {
     window.pageYOffset = 0;
     document.body.scrollTop = 0;
  }
+componentWillUnmount(){//注销异步操作导致的错误导致的内存泄漏
+   this.setState = (state, callback) => {
+     return
+   }
+ }
 render() {
   return (
     <div className={style.FixedBox} onClick={this.HandleClose} data-type='dangerbody'>

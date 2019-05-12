@@ -6,6 +6,8 @@ import style from './ShareBox.scss'
 import arrowicon from 'assets/arrowicon.png'
 import sharetitle from 'assets/sharetitle.png'
 import flowericon2 from 'assets/flowericon2.png'
+import newcommentshare from 'assets/newcommentshare.png'
+import newnoteshare from 'assets/newnoteshare.png'
 
 import shareconfig from 'common/shareconfig'
   
@@ -16,6 +18,7 @@ constructor(props) {
      this.refreshProps = this.refreshProps.bind(this);
      this.setShare = this.setShare.bind(this);
      this.createShareText = this.createShareText.bind(this);
+     this.createShareTitle = this.createShareTitle.bind(this);
 }
 componentWillReceiveProps(nextprops) {
   this.refreshProps(nextprops);
@@ -37,6 +40,22 @@ createShareText(){
             return '让书本知识带来更多可能';
         case 'comment':
             return '看看大家还有哪些补充';
+        case 'newnote':
+            return '让书本知识带来更多可能';
+        case 'newcomment':
+            return '看看大家还有哪些补充';
+    }
+}
+createShareTitle(){
+    switch (this.props.sharedata.type) {
+        default:
+        case 'note':
+        case 'comment':
+            return sharetitle;
+        case 'newnote':
+            return newnoteshare;
+        case 'newcomment':
+            return newcommentshare;
     }
 }
 render() {
@@ -47,7 +66,7 @@ render() {
         </div>
         <div className={style.ShareBox}>
             <div className={style.TitleImage}>
-                <img src={sharetitle} alt=""/>
+                <img src={this.createShareTitle()} alt=""/>
             </div>
             <div className={[style.TextContent,'childcenter childcolumn childalignstart'].join(' ')}>
                 <span>快点击右上角</span>

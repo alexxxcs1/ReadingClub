@@ -48,8 +48,8 @@ export class Comment extends Component {
     })
   }
   onUpdataComment(value){
-    console.log(value);
     this.state.data.child.unshift(value);
+    this.state.data.commentNum = parseInt(this.state.data.commentNum) + 1;
     this.setState({
         data:this.state.data
     })
